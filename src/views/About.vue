@@ -1,5 +1,6 @@
 <script setup>
 import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 const learningJourney = [
   {
@@ -50,7 +51,7 @@ const formations = [
     <section class="about-intro">
       <div class="about-copy">
         <p class="eyebrow">SOBRE MIM</p>
-        <h1>CURIOSIDADE QUE<br /><em>se transforma em código.</em></h1>
+        <h1>CURIOSIDADE QUE SE<br /><em> transforma em código.</em></h1>
         <p>
           Sou desenvolvedora de sistemas em formação e apaixonada por
           tecnologia, aprendizado e pela construção de soluções. Gosto de
@@ -124,6 +125,7 @@ const formations = [
       </article>
     </section>
   </main>
+  <Footer />
 </template>
 
 <style scoped>
@@ -158,12 +160,8 @@ hr {
   line-height: 1.08;
 }
 .about-copy h1 em {
-  display: inline-block;
   font-size: 2.65rem;
   font-weight: 420;
-  font-style: italic;
-  transform: skewX(-18deg);
-  transform-origin: left center;
   color: var(--color-principal);
   width: 80%;
   margin-top: -0.5rem;
@@ -265,7 +263,7 @@ hr {
 }
 .journey-intro h1 {
   color: #17131a;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: 3rem;
   font-weight: 400;
   line-height: 1.05;
 }
@@ -273,7 +271,6 @@ hr {
   color: var(--color-principal);
   font-family: var(--font-cursive);
   font-size: 0.92em;
-  font-style: italic;
   font-weight: 400;
 }
 .intro-text {
@@ -287,7 +284,7 @@ hr {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: 96rem;
+  max-width: 86rem;
   min-height: 27rem;
   margin: 7rem auto 0;
 }

@@ -12,6 +12,16 @@ body {
     background-color: #fdfcfc;
 }
 
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#app > footer {
+    margin-top: auto;
+}
+
 :root {
     --color-principal: #973abf;
     --font-cursive: 'Literata', serif;
