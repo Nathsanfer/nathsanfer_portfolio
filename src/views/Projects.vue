@@ -194,7 +194,7 @@ const projectCount = projects.length;
 .project-image-wrap::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(25, 15, 31, 0.08), rgba(25, 15, 31, 0.48));
+  background: linear-gradient(135deg, rgba(120, 74, 172, 0.19), rgba(79, 33, 125, 0.8));
   border-radius: 10px 10px 0 0;
   content: "";
 }
@@ -204,10 +204,7 @@ const projectCount = projects.length;
   display: block;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-  transition: transform 300ms ease;
-}
-.project-card:hover .project-image-wrap img {
-  transform: scale(1.04);
+  transition: none;
 }
 .project-number {
   position: absolute;
@@ -215,7 +212,7 @@ const projectCount = projects.length;
   top: 1rem;
   left: 1rem;
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 .project-icon {
@@ -224,8 +221,8 @@ const projectCount = projects.length;
   right: 1rem;
   bottom: -1.2rem;
   display: grid;
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 4rem;
+  height: 4rem;
   place-items: center;
   border: 5px solid #fff;
   border-radius: 50%;
@@ -234,14 +231,14 @@ const projectCount = projects.length;
 }
 .project-icon .lni {
   background: transparent;
-  font-size: 1.15rem;
+  font-size: 1.8rem;
 }
 .project-content {
   padding: 1.5rem 1.1rem 1.1rem;
 }
 .project-type {
   margin-bottom: 0.55rem;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
 }
 .project-content h2 {
   margin-bottom: 0.7rem;
@@ -270,7 +267,7 @@ const projectCount = projects.length;
   gap: 0.4rem;
 }
 .tags span {
-  padding: 0.3rem 0.55rem;
+  padding: 0.4rem 0.5rem;
   border-radius: 999px;
   background: #f2eaf6;
   color: #76508a;
