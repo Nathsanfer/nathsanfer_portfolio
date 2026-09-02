@@ -53,7 +53,7 @@ const projectCount = projects.length;
           <p class="project-description">{{ project.description }}</p>
           <div class="project-footer">
             <div class="tags">
-              <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+              <span v-for="tag in project.tags.slice(0, 3)" :key="tag">{{ tag }}</span>
             </div>
             <RouterLink :to="`/projects/${project.number}`" class="project-link" :aria-label="`Ver detalhes de ${project.name}`">
               <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
