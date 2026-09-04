@@ -9,6 +9,9 @@ const route = useRoute();
 const project = computed(() =>
   projects.find((item) => item.number === route.params.id),
 );
+const apiResponse = computed(() =>
+  JSON.stringify(project.value?.apiResponse ?? {}, null, 2),
+);
 </script>
 
 <template>
@@ -138,7 +141,7 @@ const project = computed(() =>
       </div>
     </section>
 
-    <section class="gallery-section" aria-label="Imagens do sistema">
+    <section v-if="project.type !== 'API REST'" class="gallery-section" aria-label="Imagens do sistema">
       <div class="gallery-heading">
         <div>
           <span class="section-kicker">Por dentro do projeto</span>
@@ -146,12 +149,26 @@ const project = computed(() =>
         </div>
         <span class="gallery-count">{{ (project.gallery || [project.image]).length }} imagens</span>
       </div>
-      <div class="project-gallery">
+      <div
+        class="project-gallery"
+        :class="{ 'project-gallery--mobile': project.type === 'APLICAÇÃO MOBILE' }"
+      >
         <figure v-for="(image, index) in project.gallery || [project.image]" :key="image">
           <img :src="image" :alt="`Tela ${index + 1} do projeto ${project.name}`" />
           <figcaption>Tela {{ String(index + 1).padStart(2, "0") }}</figcaption>
         </figure>
       </div>
+    </section>
+
+    <section v-else class="api-response-section" aria-label="Exemplo de resposta da API">
+      <div class="gallery-heading">
+        <div>
+          <span class="section-kicker">Dados retornados</span>
+          <h2>Um exemplo da resposta da API.</h2>
+        </div>
+        <span class="gallery-count">JSON</span>
+      </div>
+      <pre class="api-response"><code>{{ apiResponse }}</code></pre>
     </section>
 
   </main>
@@ -561,6 +578,35 @@ const project = computed(() =>
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.project-gallery--mobile {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.project-gallery--mobile figure {
+  min-height: 0;
+  aspect-ratio: 9 / 16;
+}
+.project-gallery--mobile img {
+  object-fit: contain;
+}
+.api-response-section {
+  margin-top: 7rem;
+  padding-top: 3rem;
+  border-top: 1px solid #eadfea;
+}
+.api-response {
+  max-width: 100%;
+  margin-top: 2.5rem;
+  padding: 2rem;
+  overflow-x: auto;
+  border: 1px solid #33263a;
+  border-radius: 0.8rem;
+  background: #1c1720;
+  color: #f1d7ff;
+  font-family: "Courier New", monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  white-space: pre;
+}
 .not-found {
   min-height: 60vh;
   padding: 6rem 2rem;
@@ -623,6 +669,9 @@ const project = computed(() =>
   .gallery-section {
     margin-top: 5rem;
   }
+  .api-response-section {
+    margin-top: 5rem;
+  }
   .gallery-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -631,8 +680,14 @@ const project = computed(() =>
   .project-gallery {
     grid-template-columns: 1fr;
   }
+  .project-gallery--mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .project-gallery figure {
     min-height: 15rem;
+  }
+  .project-gallery--mobile figure {
+    min-height: 0;
   }
 }
 </style>
