@@ -14,7 +14,7 @@ const projectCount = projects.length;
   <Header />
   <main class="projects-page">
     <section class="projects-heading">
-      <div>
+      <div class="heading-info">
         <p class="eyebrow">MEU TRABALHO</p>
         <h1>Ideias que ganham<br /><em>forma e propósito.</em></h1>
         <div class="heading-details">
@@ -25,6 +25,7 @@ const projectCount = projects.length;
           </div>
         </div>
       </div>
+
       <div class="heading-art">
         <span class="art-label">IDEIAS EM<br />MOVIMENTO</span>
         <img src="../assets/projects.png" alt="Ilustração de projetos" />
@@ -70,18 +71,24 @@ const projectCount = projects.length;
 .projects-page {
   max-width: 90rem;
   margin: 0 auto;
-  padding: 5rem 2.5rem 8rem;
+  padding: 3rem 1.5rem 6rem;
+  overflow-x: hidden;
 }
+
+/* --- HEADING --- */
 .projects-heading {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  margin: 0 auto 4.5rem;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
   border-bottom: 1px solid #ddd7e0;
   padding-bottom: 2.5rem;
-  padding: 2.5rem 3rem;
 }
+
+.heading-info {
+  flex: 1;
+}
+
 .eyebrow,
 .project-type {
   color: var(--color-principal);
@@ -89,37 +96,44 @@ const projectCount = projects.length;
   font-weight: 600;
   letter-spacing: 0.12em;
 }
+
 .eyebrow {
   margin-bottom: 1rem;
 }
+
 .projects-heading h1 {
   color: #17131a;
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
   font-weight: 400;
-  line-height: 1.04;
+  line-height: 1.05;
   max-width: 50rem;
 }
+
 .projects-heading h1 em {
   display: inline-block;
-  font-size: 2.65rem;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
   font-weight: 420;
   font-style: italic;
   color: var(--color-principal);
   font-family: var(--font-cursive);
   transform: skewX(-12deg);
 }
+
 .heading-details {
   display: flex;
-  align-items: end;
-  gap: 3rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 2rem;
   margin-top: 1.7rem;
 }
+
 .heading-text {
-  max-width: 20rem;
+  max-width: 22rem;
   color: #68636c;
-  font-size: 0.88rem;
-  line-height: 1.75;
+  font-size: clamp(0.85rem, 1.2vw, 0.92rem);
+  line-height: 1.7;
 }
+
 .project-count {
   display: flex;
   align-items: center;
@@ -128,6 +142,7 @@ const projectCount = projects.length;
   padding-left: 1.2rem;
   white-space: nowrap;
 }
+
 .project-count strong {
   color: var(--color-principal);
   font-family: var(--font-cursive);
@@ -135,24 +150,31 @@ const projectCount = projects.length;
   font-weight: 400;
   line-height: 1;
 }
+
 .project-count span {
   color: #68636c;
   font-size: 0.68rem;
   line-height: 1.35;
   text-transform: uppercase;
 }
+
 .heading-art {
   position: relative;
   display: flex;
-  align-items: end;
-  align-self: stretch;
-  min-width: 23rem;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  max-width: 27rem;
+  margin: 0 auto;
 }
+
 .heading-art img {
-  width: 27rem;
-  height: 18rem;
+  width: 100%;
+  height: auto;
+  max-height: 18rem;
   object-fit: contain;
 }
+
 .art-label {
   position: absolute;
   top: 0;
@@ -163,13 +185,20 @@ const projectCount = projects.length;
   letter-spacing: 0.12em;
   line-height: 1.5;
 }
+
+/* --- GRID DE PROJETOS --- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
+
+/* --- CARD DE PROJETO --- */
 .project-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   cursor: pointer;
   border: 1px solid #e5dfe8;
   border-radius: 10px;
@@ -177,20 +206,24 @@ const projectCount = projects.length;
   box-shadow: 0 1rem 2.5rem rgba(55, 33, 66, 0.06);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
+
 .project-card:hover {
   transform: translateY(-0.35rem);
   box-shadow: 0 1.3rem 2.8rem rgba(55, 33, 66, 0.12);
 }
+
 .project-card:focus-visible {
   outline: 3px solid var(--color-principal);
   outline-offset: 4px;
 }
+
 .project-image-wrap {
   position: relative;
-  height: 11rem;
+  height: 12rem;
   background: #1c1720;
   border-radius: 10px 10px 0 0;
 }
+
 .project-image-wrap::after {
   position: absolute;
   inset: 0;
@@ -198,14 +231,15 @@ const projectCount = projects.length;
   border-radius: 10px 10px 0 0;
   content: "";
 }
+
 .project-image-wrap img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-  transition: none;
 }
+
 .project-number {
   position: absolute;
   z-index: 1;
@@ -215,64 +249,79 @@ const projectCount = projects.length;
   font-size: 0.9rem;
   font-weight: 600;
 }
+
 .project-icon {
   position: absolute;
   z-index: 3;
   right: 1rem;
   bottom: -1.2rem;
   display: grid;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   place-items: center;
-  border: 5px solid #fff;
+  border: 4px solid #fff;
   border-radius: 50%;
   background: var(--color-principal);
   color: #fff;
 }
+
 .project-icon .lni {
   background: transparent;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
+
 .project-content {
-  padding: 1.5rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.5rem 1.2rem 1.2rem;
 }
+
 .project-type {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.4rem;
   font-size: 0.7rem;
 }
+
 .project-content h2 {
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.6rem;
   color: #19151c;
   font-size: 1.15rem;
   font-weight: 500;
 }
+
 .project-description {
-  min-height: 4.7rem;
+  flex: 1; /* Faz a descrição ocupar o espaço livre e empurra o footer */
   color: #716b74;
-  font-size: 0.72rem;
-  line-height: 1.65;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
 }
+
 .project-footer {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 1.2rem;
+  margin-top: auto;
   border-top: 1px solid #eeeaf0;
   padding-top: 1rem;
 }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
+
 .tags span {
-  padding: 0.4rem 0.5rem;
+  padding: 0.35rem 0.55rem;
   border-radius: 999px;
   background: #f2eaf6;
   color: #76508a;
-  font-size: 0.62rem;
+  font-size: 0.65rem;
+  font-weight: 500;
 }
+
 .project-link {
   display: grid;
   width: 2.2rem;
@@ -285,50 +334,77 @@ const projectCount = projects.length;
   text-decoration: none;
   transition: background 180ms ease;
 }
+
 .project-link:hover {
   background: var(--color-principal);
 }
+
 .project-link .lni {
   background: transparent;
   font-size: 0.95rem;
 }
 
-@media (max-width: 900px) {
-  .projects-page {
-    padding: 3rem 1.5rem 5rem;
-  }
-  .projects-heading {
-    display: block;
-    margin-bottom: 3rem;
-    padding: 2rem;
-  }
-  .heading-details {
-    align-items: start;
-    gap: 2rem;
-  }
-  .heading-art {
-    justify-content: center;
-    min-width: 0;
-    min-height: 12rem;
-    margin-top: 2rem;
-  }
-  .heading-art img {
-    width: min(22rem, 90%);
-  }
-  .heading-text {
-    max-width: 30rem;
-    margin-top: 1.5rem;
-  }
+/* ================= RESPONSIVIDADE ================= */
+
+/* Telas Médias / Tablets Grandes (2 colunas no grid, ajusta o cabeçalho) */
+@media (min-width: 600px) {
   .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 600px) {
+
+/* Tablets em pé / Laptops Menores (3 colunas na grid) */
+@media (min-width: 960px) {
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
+  
+  .projects-heading {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .heading-art {
+    margin: 0;
+  }
+}
+
+/* Desktops (4 colunas na grid) */
+@media (min-width: 1280px) {
+  .projects-page {
+    padding: 5rem 2.5rem 8rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+}
+
+/* Ajustes Finais para Mobile Extremo */
+@media (max-width: 600px) {
+  .projects-page {
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .heading-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .project-count {
+    border-left: none;
+    border-top: 1px solid #cfc1d6;
+    padding-left: 0;
+    padding-top: 0.8rem;
+    width: 100%;
+  }
+
   .project-image-wrap {
-    height: 16rem;
+    height: 14rem; /* Imagem um pouco maior no mobile para dar destaque */
   }
 }
 </style>

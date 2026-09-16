@@ -12,7 +12,6 @@
       <li><RouterLink to="/about">SOBRE MIM</RouterLink></li>
       <li><RouterLink to="/projects">PROJETOS</RouterLink></li>
       <li><RouterLink to="/knowledge">CONHECIMENTOS</RouterLink></li>
-      <li><RouterLink to="/approach">ABORDAGEM</RouterLink></li>
     </nav>
     <div class="contact">
       <RouterLink to="/contact" class="contact-link">
@@ -89,5 +88,58 @@
   height: 20px;
   margin-left: 0.5rem;
   background-color: var(--color-principal);
+}
+
+@media (max-width: 1050px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    padding: 1rem 1.5rem;
+  }
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: clamp(1rem, 5vw, 3rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 1rem 1.25rem;
+  }
+  .logo {
+    gap: 0.7rem;
+  }
+  .logo img {
+    width: 40px;
+    height: 40px;
+  }
+  .logo-text h4 {
+    font-size: 0.95rem;
+  }
+  .logo-text p {
+    font-size: 0.65rem;
+  }
+  .contact-link {
+    padding: 0.55rem 0.7rem;
+  }
+  .contact-link p {
+    font-size: 0.65rem;
+  }
+  .contact-link img {
+    width: 16px;
+    height: 16px;
+  }
+  .nav {
+    justify-content: space-between;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+  .nav li a {
+    white-space: nowrap;
+    font-size: 0.68rem;
+  }
 }
 </style>

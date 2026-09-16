@@ -10,9 +10,6 @@ import ImagePedidosApi from "../assets/images_cards/api_pedidos.png";
 import ImageReceitasApi from "../assets/images_cards/api_receitas.png";
 import ImageTurismoApi from "../assets/images_cards/api_turismo.png";
 import ImageToDo from "../assets/images_cards/todo.png";
-import ImageBeleza from "../assets/images_cards/beleza.png";
-import ImagePlanilha from "../assets/images_cards/planilha.png";
-import ImagePlanilha2 from "../assets/images_cards/planilha2.png";
 
 import ImageEpiProject1 from "../assets/images_projects/epi4.png";
 import ImageEpiProject2 from "../assets/images_projects/epi2.png";
@@ -38,6 +35,16 @@ import ImagePedidosProject1 from "../assets/images_projects/pedido1.png";
 import ImagePedidosProject2 from "../assets/images_projects/pedido2.png";
 import ImagePedidosProject3 from "../assets/images_projects/pedido3.png";
 import ImagePedidosProject4 from "../assets/images_projects/pedido4.png";
+import ImageTurismoProject1 from "../assets/images_projects/turismo1.png";
+import ImageTurismoProject2 from "../assets/images_projects/turismo2.png";
+import ImageTurismoProject3 from "../assets/images_projects/turismo3.png";
+import ImageTurismoProject4 from "../assets/images_projects/turismo4.png";
+import ImageCantinaProject1 from "../assets/images_projects/cantina1.png";
+import ImageCantinaProject2 from "../assets/images_projects/cantina2.png";
+import ImageCantinaProject3 from "../assets/images_projects/cantina3.png";
+import ImageCantinaProject4 from "../assets/images_projects/cantina4.png";
+import ImageToDoProject1 from "../assets/images_projects/todo1.png";
+import ImageToDoProject2 from "../assets/images_projects/todo2.png";
 
 export const projects = [
   {
@@ -411,6 +418,12 @@ export const projects = [
     "Dashboard com total de produtos, total de vendas e alertas de estoque baixo",
     "Renderização de páginas dinâmicas com EJS",
     ],
+    gallery: [
+      ImageCantinaProject1,
+      ImageCantinaProject2,
+      ImageCantinaProject3,
+      ImageCantinaProject4,
+    ],
     image: ImageCantina,
     imagePosition: "center",
     icon: "lni-dashboard-square-1",
@@ -449,7 +462,12 @@ export const projects = [
     "Componentes de interface com Ant Design",
     "Integração com API REST própria",
     ],
-    gallery: [ImageTurismo, ImageTurismoApi],
+    gallery: [
+      ImageTurismoProject1,
+      ImageTurismoProject2,
+      ImageTurismoProject3,
+      ImageTurismoProject4,
+    ],
     image: ImageTurismo,
     imagePosition: "center",
     icon: "lni-map-marker-5",
@@ -565,6 +583,7 @@ export const projects = [
     "Modal para criação e edição de tarefas",
     "Interface personalizada com fontes e ícones",
     ],
+    gallery: [ImageToDoProject1, ImageToDoProject2],
     image: ImageToDo,
     imagePosition: "center",
     icon: "lni-check-square-2",
@@ -573,55 +592,5 @@ export const projects = [
     "JavaScript",
     "AsyncStorage",
     "DateTimePicker",],
-  },
-  {
-    number: "13",
-    type: "APLICAÇÃO WEB",
-    name: "Sistema de Cuidados Pessoais",
-    subtitle: "Clean",
-    description:
-      "Plataforma web voltada para cuidados pessoais e beleza, desenvolvida para centralizar conteúdos sobre skincare, maquiagem, produtos e serviços.",
-    problem:
-      "Era necessário criar um espaço digital que reunisse conteúdos relacionados a cuidados pessoais e beleza de forma organizada, permitindo que os usuários explorassem artigos e conteúdos, além de interagir com a plataforma por meio de recursos personalizados.",
-    solution:
-      "Uma plataforma web com navegação por diferentes categorias de conteúdo, páginas de artigos, informações sobre produtos e serviços, autenticação de usuários e uma área de conta. A aplicação também utiliza uma API REST própria para operações de autenticação e gerenciamento de perfil, além de recursos de interação como curtidas e comentários.",
-    development: "Grupo - 4 integrantes",
-    github: {
-      repository:
-        "https://github.com/Nathsanfer/blog_clean_system.git",
-    },
-    features: [
-      "Cadastro de usuários",
-    "Login e autenticação com token JWT",
-    "Persistência da sessão do usuário",
-    "Logout",
-    "Área de conta do usuário",
-    "Consulta e atualização do perfil",
-    "Exclusão de conta",
-    "Publicação e visualização de conteúdos",
-    "Artigos sobre cuidados pessoais e skincare",
-    "Conteúdos relacionados a maquiagem",
-    "Apresentação de produtos e serviços",
-    "Sistema de curtidas",
-    "Sistema de comentários",
-    "Página de contato",
-    "Envio de mensagens por formulário",
-    "Navegação entre diferentes categorias de conteúdo",
-    "Interface responsiva",
-    "Animações e transições com Framer Motion",
-    ],
-    image: ImageBeleza,
-    imagePosition: "center",
-    icon: "lni-flower-2",
-    tags: ["Next.js",
-    "React",
-    "JavaScript",
-    "Axios",
-    "JWT",
-    "Cookies",
-    "Framer Motion",
-    "Nodemailer",
-    "REST API",
-    "CSS Modules",],
   }
 ];

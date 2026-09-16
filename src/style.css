@@ -10,6 +10,7 @@
 
 body {
     background-color: #fdfcfc;
+    overflow-x: hidden;
 }
 
 #app {

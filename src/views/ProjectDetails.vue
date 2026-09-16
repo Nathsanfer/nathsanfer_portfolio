@@ -25,7 +25,7 @@ const apiResponse = computed(() =>
     <section class="details-hero">
       <div class="details-copy">
         <p class="project-type">{{ project.type }}</p>
-        <p class="project-number">{{ project.number }}</p>
+        <span class="project-number">{{ project.number }}</span>
         <h1>{{ project.name }}</h1>
         <h3>{{ project.subtitle }}</h3>
         <p class="details-description">{{ project.description }}</p>
@@ -68,7 +68,7 @@ const apiResponse = computed(() =>
           </div>
         </div>
       </div>
-      <div v-else class="link-github">
+      <div v-else class="link-github single-github">
         <img src="../assets/github.svg" alt="Logo do GitHub" />
         <div>
           <span>Repositório</span>
@@ -168,7 +168,9 @@ const apiResponse = computed(() =>
         </div>
         <span class="gallery-count">JSON</span>
       </div>
-      <pre class="api-response"><code>{{ apiResponse }}</code></pre>
+      <div class="api-response-wrapper">
+        <pre class="api-response"><code>{{ apiResponse }}</code></pre>
+      </div>
     </section>
 
   </main>
@@ -180,97 +182,118 @@ const apiResponse = computed(() =>
 </template>
 
 <style scoped>
+/* --- ESTRUTURA PRINCIPAL --- */
 .project-details {
-  width: 87rem;
+  width: min(87rem, calc(100% - 3rem));
   margin: 0 auto;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  overflow-x: hidden;
 }
+
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   color: #68636c;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
+
 .back-link:hover {
   color: var(--color-principal);
 }
+
 .back-link .lni {
   background: transparent;
 }
+
+/* --- HERO SECTION --- */
 .details-hero {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5rem;
-  margin-top: 4rem;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 2rem;
 }
+
 .details-copy {
   position: relative;
-  flex: 1 1 0;
-  min-width: 0;
+  width: 100%;
 }
-.project-type,
-.eyebrow {
+
+.project-type {
   color: var(--color-principal);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
+
 .details-copy .project-number {
   position: absolute;
-  top: -1rem;
-  right: -1.9rem;
+  top: -0.5rem;
+  right: 0;
   color: #d9cce0;
   font-family: var(--font-cursive);
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 400;
+  line-height: 1;
+  pointer-events: none;
 }
+
 .details-copy h1 {
-  width: 40rem;
-  margin: 1rem 0 1.5rem;
+  max-width: 42rem;
+  margin: 0.8rem 0 1rem;
   color: #17131a;
-  font-size: 4rem;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.08;
 }
+
 .details-copy h3 {
-  margin-bottom: 1.5rem;
-  color: #17131a;
-  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  color: #3b3440;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.35;
 }
+
 .details-description {
-  max-width: 38rem;
+  max-width: 40rem;
   color: #68636c;
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.75;
 }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
+
 .tags span {
-  padding: 0.5rem 0.9rem;
+  padding: 0.45rem 0.85rem;
   border-radius: 999px;
   background: #f2eaf6;
   color: #76508a;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
+
 .details-image {
   position: relative;
-  width: min(37rem, 100%);
-  height: 22rem;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 26rem;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #1c1720;
-  box-shadow: 0 1.5rem 3rem rgba(55, 33, 66, 0.14);
+  box-shadow: 0 1.2rem 3rem rgba(55, 33, 66, 0.12);
 }
+
 .details-image::after {
   position: absolute;
   inset: 0;
@@ -281,61 +304,69 @@ const apiResponse = computed(() =>
   );
   content: "";
 }
+
 .details-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .details-icon {
   position: absolute;
   z-index: 1;
-  right: 1.5rem;
-  bottom: 1.5rem;
+  right: 1.2rem;
+  bottom: 1.2rem;
   display: grid;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: clamp(3.2rem, 6vw, 4.5rem);
+  height: clamp(3.2rem, 6vw, 4.5rem);
   place-items: center;
-  border: 6px solid #fff;
+  border: 4px solid #fff;
   border-radius: 50%;
   background: var(--color-principal);
   color: #fff;
 }
+
 .details-icon .lni {
   background: transparent;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
 }
+
+/* --- BARRA DE INFORMAÇÕES (GITHUB & DEV) --- */
 .details-info {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  margin-top: 4rem;
-  padding: 1rem;
+  margin-top: 3rem;
+  padding: 0.85rem;
   border: 1px solid #eadfea;
   border-radius: 1rem;
   background: #fff;
-  box-shadow: 0 1rem 2.5rem rgba(55, 33, 66, 0.08);
+  box-shadow: 0 1rem 2.5rem rgba(55, 33, 66, 0.06);
 }
+
+.github-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
 .link-github,
 .development-info {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  min-height: 4.5rem;
-  padding: 0.75rem 1.1rem;
-  border-radius: 0.7rem;
-}
-.development-info {
-  max-width: 18rem;
-}
-.github-links {
-  display: flex;
-  flex: 1 1 70%;
-  gap: 1rem;
-}
-.link-github {
-  flex: 1 1 auto;
+  min-height: 4.2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
   border: 1px solid #eadfea;
-  background: #fcf9fd;
 }
+
+.link-github {
+  background: #fcf9fd;
+  flex: 1;
+}
+
 .link-github img {
   width: 2rem;
   height: 2rem;
@@ -343,87 +374,103 @@ const apiResponse = computed(() =>
   border-radius: 50%;
   background: var(--color-principal);
 }
+
 .link-github div,
 .development-info div {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  overflow: hidden;
 }
+
 .link-github span,
 .development-info span {
   color: #8d8291;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
 .link-github a {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   color: #241d27;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
   text-decoration: none;
+  word-break: break-word;
 }
+
 .link-github a:hover {
   color: var(--color-principal);
 }
+
 .link-github a .lni {
   background: transparent;
   font-size: 0.8rem;
 }
+
 .development-info {
-  flex: 1 1 30%;
-  border: 1px solid #eadfea;
+  background: #fff;
   color: #68636c;
 }
+
 .development-info > .lni {
   color: var(--color-principal);
   font-size: 1.35rem;
 }
+
 .development-info strong {
   color: #241d27;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
 }
+
+/* --- PROBLEMA E SOLUÇÃO --- */
 .apresentation {
   display: flex;
-  align-items: stretch;
-  gap: 4rem;
-  margin-top: 6rem;
-  padding: 2.5rem 0;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding: 2rem 0;
   border-top: 1px solid #eadfea;
   border-bottom: 1px solid #eadfea;
 }
+
 .problem,
 .solution {
-  flex: 1 1 0;
-  min-width: 0;
+  width: 100%;
 }
+
 .problem-title,
 .solution-title {
   display: flex;
   align-items: center;
   gap: 0.85rem;
 }
+
 .problem-title > .lni,
 .solution-title > .lni {
   display: grid;
   width: 2.5rem;
   height: 2.5rem;
+  flex-shrink: 0;
   place-items: center;
   border-radius: 50%;
   background: #f4eafa;
   color: var(--color-principal);
   font-size: 1.1rem;
 }
+
 .problem-title div,
 .solution-title div {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
 }
+
 .problem-title span,
 .solution-title span {
   color: var(--color-principal);
@@ -431,41 +478,49 @@ const apiResponse = computed(() =>
   font-weight: 600;
   letter-spacing: 0.12em;
 }
+
 .problem-title h3,
 .solution-title h3 {
   color: #241d27;
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
+
 .divider {
-  width: 1px;
+  width: 100%;
+  height: 1px;
   background: #eadfea;
 }
+
 .description {
-  max-width: 31rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   color: #68636c;
   font-size: 0.9rem;
-  line-height: 1.8;
+  line-height: 1.75;
 }
+
+/* --- CONTEÚDO E RECURSOS --- */
 .project-content {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
-  margin-top: 7rem;
+  gap: 4rem;
+  margin-top: 4rem;
 }
+
 .features-panel,
 .technologies-panel {
   width: 100%;
-  min-width: 0;
 }
+
 .technologies-panel {
   padding-top: 3rem;
   border-top: 1px solid #eadfea;
 }
+
 .section-heading {
   max-width: 52rem;
 }
+
 .section-kicker {
   color: var(--color-principal);
   font-size: 0.68rem;
@@ -473,89 +528,108 @@ const apiResponse = computed(() =>
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
 .section-heading h2,
 .gallery-heading h2 {
-  margin-top: 0.75rem;
+  margin-top: 0.6rem;
   color: #241d27;
-  font-size: 2rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.25;
 }
+
 .features-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 3rem;
-  margin-top: 2rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.5rem;
   border-top: 1px solid #eadfea;
   list-style: none;
 }
+
 .features-list li {
   display: flex;
   align-items: center;
   gap: 1rem;
-  min-height: 3.8rem;
+  padding: 1rem 0;
   border-bottom: 1px solid #eadfea;
 }
+
 .features-list li > span {
   color: var(--color-principal);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
+
 .features-list strong {
   flex: 1;
   color: #4e4652;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
+  line-height: 1.4;
 }
+
 .features-list .lni {
   color: #b9a8bd;
   font-size: 0.8rem;
 }
+
 .technology-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 2rem;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
 }
+
 .technology-list span {
-  padding: 0.7rem 0.9rem;
+  padding: 0.55rem 0.85rem;
   border: 1px solid #eadfea;
   border-radius: 0.6rem;
   background: #fcf9fd;
   color: #5d4b63;
   font-size: 0.8rem;
+  font-weight: 500;
 }
-.gallery-section {
-  margin-top: 7rem;
+
+/* --- GALERIA --- */
+.gallery-section,
+.api-response-section {
+  margin-top: 4rem;
   padding-top: 3rem;
   border-top: 1px solid #eadfea;
 }
+
 .gallery-heading {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.8rem;
 }
+
 .gallery-count {
   color: #8d8291;
   font-size: 0.75rem;
+  font-weight: 500;
 }
+
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.25rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
+
 .project-gallery figure {
   position: relative;
-  min-height: 20rem;
+  width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 0.8rem;
   background: #1c1720;
 }
+
 .project-gallery figure:first-child:last-child {
   grid-column: 1 / -1;
 }
+
 .project-gallery img {
   display: block;
   width: 100%;
@@ -563,131 +637,160 @@ const apiResponse = computed(() =>
   object-fit: cover;
   transition: transform 0.4s ease;
 }
+
 .project-gallery figure:hover img {
   transform: scale(1.03);
 }
+
 .project-gallery figcaption {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  padding: 0.4rem 0.65rem;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  padding: 0.35rem 0.6rem;
   border-radius: 999px;
-  background: rgba(28, 23, 32, 0.78);
+  background: rgba(28, 23, 32, 0.82);
   color: #fff;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* Galeria específica para Apps Mobile */
 .project-gallery--mobile {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
 .project-gallery--mobile figure {
-  min-height: 0;
   aspect-ratio: 9 / 16;
 }
+
 .project-gallery--mobile img {
-  object-fit: contain;
+  object-fit: cover;
 }
-.api-response-section {
-  margin-top: 7rem;
-  padding-top: 3rem;
-  border-top: 1px solid #eadfea;
-}
-.api-response {
-  max-width: 100%;
-  margin-top: 2.5rem;
-  padding: 2rem;
-  overflow-x: auto;
+
+/* --- RESPOSTA DA API (JSON) --- */
+.api-response-wrapper {
+  margin-top: 2rem;
   border: 1px solid #33263a;
   border-radius: 0.8rem;
   background: #1c1720;
+  overflow: hidden;
+}
+
+.api-response {
+  max-width: 100%;
+  max-height: 30rem;
+  padding: 1.2rem;
+  overflow-x: auto;
+  overflow-y: auto;
   color: #f1d7ff;
-  font-family: "Courier New", monospace;
-  font-size: 0.82rem;
-  line-height: 1.8;
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
   white-space: pre;
 }
+
+/* --- NOT FOUND --- */
 .not-found {
-  min-height: 60vh;
-  padding: 6rem 2rem;
+  min-height: 50vh;
+  padding: 4rem 1.5rem;
   text-align: center;
 }
+
 .not-found h1 {
   margin-bottom: 1rem;
   font-weight: 400;
 }
+
 .not-found a {
   color: var(--color-principal);
 }
-@media (max-width: 900px) {
-  .project-details {
-    padding: 2.5rem 1.5rem 5rem;
+
+/* ================= BREAKPOINTS DE RESPONSIVIDADE ================= */
+
+/* Tablets em pé e Notebooks Pequenos (>= 600px) */
+@media (min-width: 600px) {
+  .github-links {
+    flex-direction: row;
   }
+
+  .project-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-gallery--mobile {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-heading {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+/* Desktops e Laptops (>= 900px) */
+@media (min-width: 900px) {
   .details-hero {
-    flex-direction: column;
-    gap: 3rem;
-    margin-top: 3rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 3.5rem;
   }
+
   .details-copy,
   .details-image {
-    width: 100%;
+    width: 50%;
   }
-  .details-image {
-    height: 22rem;
-  }
+
   .details-info {
-    margin-top: 5rem;
-    flex-direction: column;
-    padding: 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
   }
-  .link-github,
-  .development-info,
+
   .github-links {
-    width: 100%;
+    width: auto;
+    flex: 1;
   }
-  .github-links {
-    flex-direction: column;
+
+  .development-info {
+    width: auto;
+    min-width: 16rem;
   }
+
   .apresentation {
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 3rem;
-    padding: 2rem 0;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding: 3rem 0;
   }
+
+  .problem,
+  .solution {
+    flex: 1;
+  }
+
   .divider {
-    width: 100%;
-    height: 1px;
+    width: 1px;
+    height: auto;
   }
-  .project-content {
-    gap: 4rem;
-    margin-top: 5rem;
-  }
+
   .features-list {
-    grid-template-columns: 1fr;
-    column-gap: 0;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
   }
-  .gallery-section {
-    margin-top: 5rem;
-  }
-  .api-response-section {
-    margin-top: 5rem;
-  }
-  .gallery-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .project-gallery {
-    grid-template-columns: 1fr;
-  }
+
   .project-gallery--mobile {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, 1fr);
   }
-  .project-gallery figure {
-    min-height: 15rem;
-  }
-  .project-gallery--mobile figure {
-    min-height: 0;
+
+  .project-content,
+  .gallery-section,
+  .api-response-section {
+    margin-top: 6rem;
   }
 }
 </style>

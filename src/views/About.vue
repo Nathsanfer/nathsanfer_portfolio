@@ -89,6 +89,7 @@ const formations = [
     </section>
 
     <hr />
+    
     <section class="journey-intro">
       <p class="eyebrow">MINHA JORNADA</p>
       <h1>
@@ -136,57 +137,79 @@ hr {
   margin-bottom: 4rem;
   margin-top: -2rem;
 }
+
 .about-page {
   padding: 2rem 2.5rem 7rem;
   overflow: hidden;
+  max-width: 1400px; /* Limita a largura em monitores ultrawide */
+  margin: 0 auto;
 }
+
+/* --- ABOUT INTRO --- */
 .about-intro {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
   margin-bottom: 6rem;
   margin-top: 3rem;
-  gap: 7rem;
+  gap: 4rem; /* Gap fluido no lugar de margens rígidas */
 }
+
 .about-copy {
-  width: 42rem;
+  width: 100%;
+  max-width: 42rem; /* Alterado de width fixo para max-width */
 }
-.about-copy h1 {
-  margin-bottom: 2rem;
+
+.about-copy h1, .journey-intro h1 {
+  margin-bottom: 1.5rem;
   color: #17131a;
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 4vw, 3rem); /* Tipografia fluida */
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.1;
 }
-.about-copy h1 em {
-  font-size: 2.65rem;
+
+.about-copy h1 em, .journey-intro h1 em {
+  font-size: clamp(2.4rem, 4.5vw, 3.2rem);
   font-weight: 420;
   color: var(--color-principal);
-  width: 80%;
-  margin-top: -0.5rem;
   font-family: var(--font-cursive);
+  font-style: normal;
+  display: inline-block;
+  margin-top: 0.2rem;
 }
+
 .about-copy > p:not(.eyebrow) {
-  max-width: 40rem;
   margin-top: 1rem;
   color: #68636c;
-  font-size: 0.9rem;
-  line-height: 1.8;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.7;
 }
+
+.eyebrow {
+  margin-bottom: 1rem;
+  color: var(--color-principal);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* --- FORMATIONS --- */
 .formations {
-  align-self: end;
+  width: 100%;
+  max-width: 32rem;
   padding-bottom: 0.25rem;
-  width: 35rem;
 }
+
 .formations-heading {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   border-bottom: 1px solid #ded9e1;
   padding-bottom: 0.8rem;
 }
+
 .container-icon {
   display: grid;
   width: 3.4rem;
@@ -197,26 +220,28 @@ hr {
   border-radius: 50%;
   overflow: hidden;
 }
+
 .container-icon img {
-  display: block;
   width: 2.1rem;
   height: 2.1rem;
-  margin: 0;
   object-fit: contain;
-  background: transparent;
 }
+
 .formations-heading h2 {
   color: #19151c;
   font-size: 1.3rem;
   font-weight: 500;
 }
+
 .formation-card {
   position: relative;
-  padding: 1.1rem 0 1.2rem 1.5rem;
+  padding: 0 0 1.5rem 1.5rem;
+  margin-bottom: 1rem;
 }
+
 .formation-card::before {
   position: absolute;
-  top: 1.45rem;
+  top: 0.35rem;
   left: 0;
   width: 0.45rem;
   height: 0.45rem;
@@ -224,70 +249,61 @@ hr {
   background: var(--color-principal);
   content: "";
 }
+
 .formation-card p {
   margin-bottom: 0.4rem;
   color: var(--color-principal);
-  font-size: 0.68rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
+
 .formation-card h3 {
   margin-bottom: 0.45rem;
   color: #19151c;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
 }
+
 .formation-card strong {
   display: block;
   margin-bottom: 0.55rem;
   color: #4f4654;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
+
 .formation-card span {
   display: block;
   color: #716b74;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   line-height: 1.6;
 }
+
+/* --- JOURNEY INTRO --- */
 .journey-intro {
   max-width: 50rem;
   margin: 0 auto;
   text-align: center;
 }
-.eyebrow {
-  margin-bottom: 1rem;
-  color: var(--color-principal);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-}
-.journey-intro h1 {
-  color: #17131a;
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1.05;
-}
-.journey-intro h1 em {
-  color: var(--color-principal);
-  font-family: var(--font-cursive);
-  font-size: 0.92em;
-  font-weight: 400;
-}
+
 .intro-text {
-  max-width: 60rem;
+  max-width: 45rem;
   margin: 1.5rem auto 0;
   color: #68636c;
-  font-size: 0.92rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   line-height: 1.7;
 }
+
+/* --- TIMELINE DESKTOP --- */
 .timeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
   max-width: 86rem;
-  min-height: 27rem;
   margin: 7rem auto 0;
 }
+
 .timeline-track {
   position: absolute;
   top: 50%;
@@ -297,17 +313,16 @@ hr {
   background: var(--color-principal);
   opacity: 0.45;
 }
+
 .timeline-item {
   position: relative;
   display: flex;
   justify-content: center;
 }
-.timeline-item.is-top {
-  align-items: flex-start;
-}
-.timeline-item.is-bottom {
-  align-items: flex-end;
-}
+
+.timeline-item.is-top { align-items: flex-start; }
+.timeline-item.is-bottom { align-items: flex-end; }
+
 .timeline-item::after {
   position: absolute;
   left: 50%;
@@ -317,66 +332,63 @@ hr {
   content: "";
   opacity: 0.45;
 }
-.timeline-item.is-top::after {
-  top: calc(50% - 3.5rem);
-}
-.timeline-item.is-bottom::after {
-  top: 50%;
-}
+
+.timeline-item.is-top::after { top: calc(50% - 3.5rem); }
+.timeline-item.is-bottom::after { top: 50%; }
+
 .timeline-card {
   position: relative;
   z-index: 1;
-  width: min(23rem, calc(100% - 0.3rem));
-  min-height: 10rem;
-  padding: 1rem;
+  width: 100%;
+  padding: 1.5rem;
   border: 1px solid #e8e2eb;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 0.8rem 2rem rgba(55, 33, 66, 0.07);
 }
-.is-top .timeline-card {
-  transform: translateY(-1rem);
-}
-.is-bottom .timeline-card {
-  transform: translateY(1rem);
-}
+
+.is-top .timeline-card { transform: translateY(-1.5rem); }
+.is-bottom .timeline-card { transform: translateY(1.5rem); }
+
 .card-header {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
 }
+
 .card-icon {
   display: grid;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2.2rem;
+  height: 2.2rem;
   place-items: center;
   border-radius: 50%;
   background: #f0e5f5;
   color: var(--color-principal);
+  font-size: 1.1rem;
 }
-.card-icon .lni {
-  background: transparent;
-  font-size: 0.95rem;
-}
+
 .card-year {
   margin: 0;
   color: var(--color-principal);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.timeline-card h2 {
-  margin-bottom: 0.45rem;
-  color: #19151c;
   font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
 }
+
+.timeline-card h2 {
+  margin-bottom: 0.5rem;
+  color: #19151c;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
 .card-text {
   color: #716b74;
-  font-size: 0.72rem;
-  line-height: 1.55;
+  font-size: 0.85rem;
+  line-height: 1.6;
 }
+
 .timeline-dot {
   position: absolute;
   z-index: 2;
@@ -389,53 +401,111 @@ hr {
   box-shadow: 0 0 0 1px var(--color-principal);
 }
 
-@media (max-width: 900px) {
-  .about-page {
-    padding: 3rem 1.5rem 5rem;
-  }
-  .timeline {
-    display: block;
-    min-height: 0;
-    margin-top: 4rem;
-    padding-left: 2rem;
-  }
+
+/* ================= RESPONSIVIDADE ================= */
+
+/* Tablet e Telas Médias (Mudança da Timeline e Layout Principal) */
+@media (max-width: 1024px) {
   .about-intro {
-    display: block;
-    margin: 3rem auto 6rem;
+    flex-direction: column;
+    gap: 4rem;
   }
+
+  .about-copy {
+    max-width: 100%;
+  }
+  
   .formations {
-    margin-top: 3rem;
+    max-width: 100%;
   }
+
+  /* Timeline Horizontal -> Vertical */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 4rem;
+    padding-left: 1.5rem; /* Espaço para a linha vertical */
+  }
+
   .timeline-track {
     top: 0;
-    right: auto;
     bottom: 0;
-    left: 0.45rem;
+    left: 0.4rem;
     width: 2px;
-    height: auto;
+    height: 100%;
   }
-  .timeline-item,
-  .timeline-item.is-top,
+
+  .timeline-item, 
+  .timeline-item.is-top, 
   .timeline-item.is-bottom {
-    display: block;
-    min-height: 13rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 2rem; /* Afasta o card da linha */
   }
+
   .timeline-item::after {
-    display: none;
+    display: none; /* Remove linhas verticais conectores antigas */
   }
-  .timeline-card,
-  .is-top .timeline-card,
+
+  .timeline-card, 
+  .is-top .timeline-card, 
   .is-bottom .timeline-card {
-    width: min(100%, 22rem);
-    min-height: 0;
-    transform: none;
+    transform: none; /* Remove os pulos de Y */
+    width: 100%;
+    max-width: 35rem; /* Evita que o card estique demais na tela inteira */
   }
-  .timeline-item + .timeline-item {
-    margin-top: 1.25rem;
-  }
+
   .timeline-dot {
-    top: 1.5rem;
-    left: -2rem;
+    top: 2rem; /* Alinha com o header do card */
+    left: -0.05rem; /* Centraliza perfeitamente na linha vertical */
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .about-page {
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .about-intro {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+    gap: 3rem;
+  }
+
+  .journey-intro {
+    text-align: left; /* No mobile, textos alinhados à esquerda ficam melhores */
+  }
+
+  .intro-text {
+    margin: 1rem 0 0 0;
+  }
+
+  hr {
+    margin-bottom: 3rem;
+  }
+
+  /* Ajuste fino da linha do tempo no mobile */
+  .timeline {
+    padding-left: 0; 
+  }
+
+  .timeline-track {
+    left: 0;
+  }
+
+  .timeline-item {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-card {
+    padding: 1.25rem;
+  }
+
+  .timeline-dot {
+    left: -0.45rem; /* Ajuste milimétrico para o dot ficar na linha colada à borda */
+    top: 1.8rem;
   }
 }
 </style>
