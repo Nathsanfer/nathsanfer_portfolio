@@ -133,7 +133,7 @@ const formations = [
 hr {
   border: none;
   height: 1px;
-  background-color: #d5d3d6;
+  background-color: var(--color-border);
   margin-bottom: 4rem;
   margin-top: -2rem;
 }
@@ -163,15 +163,15 @@ hr {
 
 .about-copy h1, .journey-intro h1 {
   margin-bottom: 1.5rem;
-  color: #17131a;
+  color: var(--color-text);
   font-size: clamp(2.2rem, 4vw, 3rem); /* Tipografia fluida */
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.1;
 }
 
 .about-copy h1 em, .journey-intro h1 em {
   font-size: clamp(2.4rem, 4.5vw, 3.2rem);
-  font-weight: 420;
+  font-weight: 400;
   color: var(--color-principal);
   font-family: var(--font-cursive);
   font-style: normal;
@@ -181,16 +181,17 @@ hr {
 
 .about-copy > p:not(.eyebrow) {
   margin-top: 1rem;
-  color: #68636c;
+  color: var(--color-text-light);
   font-size: clamp(0.9rem, 1.5vw, 1rem);
   line-height: 1.7;
+  font-weight: 300;
 }
 
 .eyebrow {
   margin-bottom: 1rem;
   color: var(--color-principal);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 
@@ -206,7 +207,7 @@ hr {
   align-items: center;
   gap: 0.8rem;
   margin-bottom: 1.5rem;
-  border-bottom: 1px solid #ded9e1;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.8rem;
 }
 
@@ -216,7 +217,7 @@ hr {
   height: 3.4rem;
   flex: 0 0 3.4rem;
   place-items: center;
-  border: 1px solid var(--color-principal);
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   overflow: hidden;
 }
@@ -228,9 +229,9 @@ hr {
 }
 
 .formations-heading h2 {
-  color: #19151c;
+  color: var(--color-text);
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .formation-card {
@@ -248,35 +249,37 @@ hr {
   border-radius: 50%;
   background: var(--color-principal);
   content: "";
+  opacity: 0.8;
 }
 
 .formation-card p {
   margin-bottom: 0.4rem;
   color: var(--color-principal);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .formation-card h3 {
   margin-bottom: 0.45rem;
-  color: #19151c;
+  color: var(--color-text);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .formation-card strong {
   display: block;
   margin-bottom: 0.55rem;
-  color: #4f4654;
+  color: var(--color-text);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .formation-card span {
   display: block;
-  color: #716b74;
+  color: var(--color-text-light);
   font-size: 0.85rem;
   line-height: 1.6;
+  font-weight: 300;
 }
 
 /* --- JOURNEY INTRO --- */
@@ -289,9 +292,10 @@ hr {
 .intro-text {
   max-width: 45rem;
   margin: 1.5rem auto 0;
-  color: #68636c;
+  color: var(--color-text-light);
   font-size: clamp(0.9rem, 1.5vw, 1rem);
   line-height: 1.7;
+  font-weight: 300;
 }
 
 /* --- TIMELINE DESKTOP --- */
@@ -309,9 +313,9 @@ hr {
   top: 50%;
   right: 2%;
   left: 2%;
-  height: 2px;
+  height: 1px;
   background: var(--color-principal);
-  opacity: 0.45;
+  opacity: 0.3;
 }
 
 .timeline-item {
@@ -330,7 +334,7 @@ hr {
   height: 3.5rem;
   background: var(--color-principal);
   content: "";
-  opacity: 0.45;
+  opacity: 0.3;
 }
 
 .timeline-item.is-top::after { top: calc(50% - 3.5rem); }
@@ -341,10 +345,15 @@ hr {
   z-index: 1;
   width: 100%;
   padding: 1.5rem;
-  border: 1px solid #e8e2eb;
-  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
-  box-shadow: 0 0.8rem 2rem rgba(55, 33, 66, 0.07);
+  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+  box-shadow: 0 1rem 3rem rgba(154, 126, 176, 0.08);
 }
 
 .is-top .timeline-card { transform: translateY(-1.5rem); }
@@ -363,7 +372,8 @@ hr {
   height: 2.2rem;
   place-items: center;
   border-radius: 50%;
-  background: #f0e5f5;
+  background: transparent;
+  border: 1px solid var(--color-border);
   color: var(--color-principal);
   font-size: 1.1rem;
 }
@@ -372,21 +382,22 @@ hr {
   margin: 0;
   color: var(--color-principal);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .timeline-card h2 {
   margin-bottom: 0.5rem;
-  color: #19151c;
+  color: var(--color-text);
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.3;
 }
 
 .card-text {
-  color: #716b74;
+  color: var(--color-text-light);
   font-size: 0.85rem;
   line-height: 1.6;
+  font-weight: 300;
 }
 
 .timeline-dot {
@@ -395,10 +406,10 @@ hr {
   top: calc(50% - 0.45rem);
   width: 0.9rem;
   height: 0.9rem;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   border-radius: 50%;
   background: var(--color-principal);
-  box-shadow: 0 0 0 1px var(--color-principal);
+  box-shadow: 0 0 0 1px var(--color-border);
 }
 
 

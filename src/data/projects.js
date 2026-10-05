@@ -126,7 +126,7 @@ export const projects = [
       "Uma plataforma centralizada para cadastrar e acompanhar equipamentos, controlar o estoque, registrar movimentações de entrega e devolução, consultar históricos, visualizar indicadores e gerar relatórios para apoiar a gestão dos EPIs.",
     development: "Grupo - 5 integrantes",
     github: {
-      repository: "https://github.com/Nathsanfer/epi-management-system",
+      repository: "https://github.com/Nathsanfer/ppe_management_system.git",
     },
     features: [
       "Cadastro e gerenciamento de equipamentos",

@@ -25,7 +25,7 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
       <h1 class="title-cursive">valor real.</h1>
       <p class="text">
         Transformo ideias em sistemas web eficientes, combinando design, código
-        e dados para entregar experiência úteis, intuitivas e escaláves.
+        e dados para entregar experiências úteis, intuitivas e escaláveis.
       </p>
       <div class="buttons">
         <RouterLink to="/projects" class="button-projects">
@@ -34,7 +34,7 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
         </RouterLink>
         <RouterLink to="/about" class="button-about">
           CONHECER MINHA JORNADA
-          <i class="lni lni-arrow-upward" aria-hidden="true"></i>
+          <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
         </RouterLink>
       </div>
     </div>
@@ -190,44 +190,50 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
 }
 
 .apresentation {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 600;
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  font-weight: 500;
   color: var(--color-principal);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .title {
-  font-size: clamp(2.2rem, 4vw, 3.3rem);
-  font-weight: 400;
-  margin-bottom: -0.7rem;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 300;
+  margin-bottom: -0.5rem;
   line-height: 1.1;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
 .title-cursive {
-  font-size: clamp(3rem, 5vw, 4.3rem);
-  font-weight: 420;
+  font-size: clamp(3.2rem, 5.5vw, 4.8rem);
+  font-weight: 300;
   font-style: italic;
-  transform: skewX(-18deg);
+  transform: skewX(-12deg);
   transform-origin: left center;
   color: var(--color-principal);
   width: 100%;
-  margin-top: -0.5rem;
+  margin-top: -0.2rem;
   font-family: var(--font-cursive);
 }
 
 .text {
-  font-size: clamp(0.95rem, 1.5vw, 1.04rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   max-width: 35rem;
   width: 100%;
   margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  color: var(--color-text-light);
+  font-weight: 300;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .button-projects, .button-about {
@@ -235,33 +241,44 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
+  padding: 0.85rem 1.8rem;
+  border-radius: 50px;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .button-projects {
-  background-color: #000;
+  background-color: var(--color-text);
   color: #fff;
+  border: 1px solid var(--color-text);
 }
 
 .button-about {
-  border: 1px solid var(--color-principal);
+  border: 1px solid var(--color-border);
   color: var(--color-principal);
   background-color: transparent;
 }
 
-.button-projects:hover, .button-about:hover {
+.button-projects:hover {
   background-color: var(--color-principal);
-  color: #fff;
+  border-color: var(--color-principal);
+  box-shadow: 0 8px 25px rgba(154, 126, 176, 0.3);
+  transform: translateY(-2px);
+}
+
+.button-about:hover {
+  border-color: var(--color-principal);
+  background-color: transparent;
+  color: var(--color-principal-hover);
+  transform: translateY(-2px);
 }
 
 .buttons .lni {
   flex-shrink: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .hero-image {
@@ -535,36 +552,37 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #e5dfe8;
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   background: #fff;
   color: inherit;
   text-decoration: none;
-  box-shadow: 0 0.8rem 1.8rem rgba(55, 33, 66, 0.05);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 4px 20px rgba(154, 126, 176, 0.04);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .featured-card:hover {
   transform: translateY(-0.35rem);
-  box-shadow: 0 1.2rem 2.5rem rgba(55, 33, 66, 0.12);
+  box-shadow: 0 12px 30px rgba(154, 126, 176, 0.1);
+  border-color: rgba(154, 126, 176, 0.3);
 }
 
 .featured-image {
   position: relative;
   height: 12rem;
   overflow: hidden;
-  background: #eeeaf0;
+  background: #f7f5f9;
 }
 
 .featured-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 300ms ease;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .featured-card:hover .featured-image img { 
-  transform: scale(1.04); 
+  transform: scale(1.05); 
 }
 
 .featured-image span {
@@ -574,7 +592,7 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
   color: #fff;
   font-family: var(--font-cursive);
   font-size: 1.25rem;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .featured-image i {
@@ -589,6 +607,13 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
   background: #fff;
   color: var(--color-principal);
   font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.featured-card:hover .featured-image i {
+  background: var(--color-principal);
+  color: #fff;
 }
 
 .featured-info { 
@@ -602,13 +627,13 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
   margin-bottom: 0.45rem; 
   color: var(--color-principal); 
   font-size: 0.68rem; 
-  font-weight: 600; 
-  letter-spacing: 0.1em; 
+  font-weight: 500; 
+  letter-spacing: 0.12em; 
 }
 
 .featured-info h3 { 
   margin-bottom: 0.8rem;
-  color: #19151c; 
+  color: var(--color-text); 
   font-size: 1.05rem; 
   font-weight: 500; 
   line-height: 1.3; 
@@ -622,11 +647,11 @@ const focusAreas = ["Desenvolvimento web", "APIs e integrações", "Cloud e DevO
 }
 
 .tag-row span {
-  padding: 0.3rem 0.55rem;
-  border-radius: 4px;
-  background: #f0e9f3;
-  color: #70577c;
-  font-size: 0.65rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 50px;
+  background: rgba(154, 126, 176, 0.08);
+  color: var(--color-text-light);
+  font-size: 0.68rem;
   font-weight: 500;
 }
 

@@ -100,6 +100,23 @@ const knowledgeAreas = [
         </div>
       </article>
     </section>
+
+    <section class="knowledge-cta" aria-label="Próximo passo">
+      <div>
+        <p class="cta-kicker">PRÓXIMO PASSO</p>
+        <h2>Quer ver o conhecimento <em>em ação?</em></h2>
+      </div>
+      <div class="cta-links">
+        <RouterLink to="/projects" class="cta-btn cta-btn-primary">
+          VER PROJETOS
+          <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
+        </RouterLink>
+        <RouterLink to="/contact" class="cta-btn cta-btn-secondary">
+          ENTRAR EM CONTATO
+          <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
+        </RouterLink>
+      </div>
+    </section>
   </main>
   <Footer />
 </template>
@@ -361,6 +378,104 @@ const knowledgeAreas = [
 
   .knowledge-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- CTA SECTION --- */
+.knowledge-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding: 3rem 3.5rem;
+  border-radius: 12px;
+  background: #0b0a0d;
+  color: #fff;
+}
+
+.cta-kicker {
+  margin-bottom: 0.6rem;
+  color: #b38bd0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+
+.knowledge-cta h2 {
+  color: #fff;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  max-width: 36rem;
+}
+
+.knowledge-cta h2 em {
+  color: #d9a9e8;
+  font-family: var(--font-cursive);
+  font-style: italic;
+  font-weight: 420;
+}
+
+.cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta-btn-primary {
+  background: var(--color-principal);
+  color: #fff;
+  border: 1px solid var(--color-principal);
+}
+
+.cta-btn-primary:hover {
+  background: #9a63c8;
+  border-color: #9a63c8;
+}
+
+.cta-btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #a980bd;
+}
+
+.cta-btn-secondary:hover {
+  background: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+@media (max-width: 600px) {
+  .knowledge-cta {
+    padding: 2rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-links {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 }
 </style>

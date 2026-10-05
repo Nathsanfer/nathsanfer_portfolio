@@ -53,9 +53,8 @@ footer {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2.5rem;
-  border-top: 1px solid #e8e2eb;
-  background-color: #fff;
-  box-shadow: 0 0.8rem 2rem rgba(55, 33, 66, 0.07);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
   box-sizing: border-box;
   width: 100%;
 }
@@ -75,8 +74,8 @@ footer {
 
 .logo-text h4 {
   font-size: 1.05rem;
-  font-weight: 600;
-  color: #000;
+  font-weight: 500;
+  color: var(--color-text);
   margin: 0;
   letter-spacing: 0.05em;
 }
@@ -84,7 +83,7 @@ footer {
 .logo-text p {
   font-size: 0.75rem;
   margin: 0;
-  color: #666;
+  color: var(--color-text-light);
   letter-spacing: 0.05em;
 }
 
@@ -97,8 +96,8 @@ footer {
 
 .item h4 {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-weight: 500;
+  color: var(--color-text);
   margin: 0 0 0.2rem 0;
   letter-spacing: 0.05em;
 }
@@ -106,15 +105,15 @@ footer {
 .item p,
 .item a {
   font-size: 0.82rem;
-  color: #666;
+  color: var(--color-text-light);
   margin: 0;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
   display: inline-block;
 }
 
 .item a:hover {
-  color: var(--color-principal, #784aac);
+  color: var(--color-principal);
 }
 
 /* --- REDES SOCIAIS --- */
@@ -126,8 +125,8 @@ footer {
 
 .social-label {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-weight: 500;
+  color: var(--color-text);
   letter-spacing: 0.05em;
 }
 
@@ -141,20 +140,29 @@ footer {
   width: 2rem;
   height: 2rem;
   place-items: center;
-  background-color: var(--color-principal, #784aac);
+  background-color: transparent;
+  border: 1px solid var(--color-border);
   border-radius: 50%;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .social-links a:hover {
   transform: translateY(-2px);
-  opacity: 0.9;
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  box-shadow: 0 4px 15px rgba(154, 126, 176, 0.2);
 }
 
 .social-links img {
   width: 1.1rem;
   height: 1.1rem;
   object-fit: contain;
+  transition: all 0.3s ease;
+  filter: brightness(0) saturate(100%) invert(35%) sepia(21%) saturate(2203%) hue-rotate(244deg) brightness(84%) contrast(85%);
+}
+
+.social-links a:hover img {
+  filter: brightness(0) invert(1);
 }
 
 /* ================= BREAKPOINTS RESPONSIVOS ================= */
@@ -180,7 +188,7 @@ footer {
     order: 3;
     width: 100%;
     justify-content: space-between;
-    border-top: 1px solid #f0eaf3;
+    border-top: 1px solid var(--color-border);
     padding-top: 1.25rem;
     gap: 1.5rem;
   }

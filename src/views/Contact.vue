@@ -92,7 +92,7 @@ import Footer from "../components/Footer.vue";
   gap: 0.75rem;
   color: var(--color-principal);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 
@@ -106,9 +106,9 @@ import Footer from "../components/Footer.vue";
 h1 {
   max-width: 65rem;
   margin: 1.2rem 0 1rem;
-  color: #151216;
+  color: var(--color-text);
   font-size: clamp(2.4rem, 6.5vw, 5.2rem);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -118,7 +118,7 @@ h1 em {
   color: var(--color-principal);
   font-family: var(--font-cursive);
   font-size: 0.9em;
-  font-weight: 450;
+  font-weight: 400;
   margin-top: 0.2rem;
   margin-bottom: 1.5rem;
   font-style: normal;
@@ -126,9 +126,10 @@ h1 em {
 
 .intro-text {
   max-width: 30rem;
-  color: #615c63;
+  color: var(--color-text-light);
   font-size: clamp(0.9rem, 1.2vw, 1rem);
   line-height: 1.7;
+  font-weight: 300;
 }
 
 .email-link {
@@ -137,14 +138,14 @@ h1 em {
   gap: 0.75rem;
   margin-top: 1.8rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid #c8a6d4;
-  color: #171318;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
   font-size: clamp(0.85rem, 1.8vw, 1rem);
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   max-width: 100%;
   word-break: break-all;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .email-link i {
@@ -172,27 +173,29 @@ h1 em {
   align-items: flex-start;
   gap: 1.25rem;
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  border: 1px solid transparent;
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   text-decoration: none;
   box-sizing: border-box;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--color-bg);
+  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .contact-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0.9rem 1.8rem rgba(55, 33, 66, 0.12);
+  box-shadow: 0 1rem 3rem rgba(154, 126, 176, 0.08);
+  border-color: var(--color-principal);
 }
 
 .contact-card-dark {
-  background: #151218;
-  color: #fff;
+  background: #fbf9fc;
+  color: var(--color-text);
 }
 
 .contact-card-light {
-  border-color: #e4dce7;
   background: #fff;
-  color: #151218;
+  color: var(--color-text);
 }
 
 .card-icon {
@@ -202,40 +205,39 @@ h1 em {
   flex: 0 0 2.75rem;
   place-items: center;
   border-radius: 50%;
-  background: var(--color-principal);
+  background: transparent;
+  border: 1px solid var(--color-border);
 }
 
 .card-icon img {
   width: 1.25rem;
   height: 1.25rem;
   object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(35%) sepia(21%) saturate(2203%) hue-rotate(244deg) brightness(84%) contrast(85%);
 }
 
 .card-label {
   margin-bottom: 0.75rem;
-  color: #a9a2ad;
+  color: var(--color-text-light);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.1em;
-}
-
-.contact-card-light .card-label {
-  color: #817583;
 }
 
 .contact-card h2 {
   margin-bottom: 1rem;
   font-size: clamp(1.35rem, 2.5vw, 1.65rem);
   font-weight: 400;
+  color: var(--color-text);
 }
 
 .card-action {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  color: inherit;
+  color: var(--color-text-light);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .card-action i,
@@ -250,9 +252,10 @@ h1 em {
   gap: 1.25rem;
   margin-top: 3.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #efe8f2;
-  color: #817983;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-light);
   font-size: 0.78rem;
+  font-weight: 300;
 }
 
 .footer-status {
@@ -271,7 +274,7 @@ h1 em {
 
 .contact-footer p span {
   margin: 0 0.35rem;
-  color: #c8becb;
+  color: var(--color-border);
 }
 
 .projects-link {
@@ -279,12 +282,12 @@ h1 em {
   align-items: center;
   gap: 0.5rem;
   padding-bottom: 0.25rem;
-  border-bottom: 1px solid #c8a6d4;
-  color: #302b32;
-  font-weight: 500;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 400;
   text-decoration: none;
   width: max-content;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 /* ================= BREAKPOINTS DE RESPONSIVIDADE ================= */

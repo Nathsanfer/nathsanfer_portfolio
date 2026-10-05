@@ -195,11 +195,11 @@ const apiResponse = computed(() =>
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: #68636c;
+  color: var(--color-text-light);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
 }
 
 .back-link:hover {
@@ -226,7 +226,7 @@ const apiResponse = computed(() =>
 .project-type {
   color: var(--color-principal);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -235,26 +235,27 @@ const apiResponse = computed(() =>
   position: absolute;
   top: -0.5rem;
   right: 0;
-  color: #d9cce0;
+  color: var(--color-border);
   font-family: var(--font-cursive);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 400;
   line-height: 1;
   pointer-events: none;
+  opacity: 0.5;
 }
 
 .details-copy h1 {
   max-width: 42rem;
   margin: 0.8rem 0 1rem;
-  color: #17131a;
+  color: var(--color-text);
   font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.08;
 }
 
 .details-copy h3 {
   margin-bottom: 1.2rem;
-  color: #3b3440;
+  color: var(--color-text);
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 400;
   line-height: 1.35;
@@ -262,9 +263,10 @@ const apiResponse = computed(() =>
 
 .details-description {
   max-width: 40rem;
-  color: #68636c;
+  color: var(--color-text-light);
   font-size: clamp(0.9rem, 1.2vw, 1rem);
   line-height: 1.75;
+  font-weight: 300;
 }
 
 .tags {
@@ -277,10 +279,11 @@ const apiResponse = computed(() =>
 .tags span {
   padding: 0.45rem 0.85rem;
   border-radius: 999px;
-  background: #f2eaf6;
-  color: #76508a;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-principal);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .details-image {
@@ -291,7 +294,7 @@ const apiResponse = computed(() =>
   overflow: hidden;
   border-radius: 12px;
   background: #1c1720;
-  box-shadow: 0 1.2rem 3rem rgba(55, 33, 66, 0.12);
+  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.08);
 }
 
 .details-image::after {
@@ -300,7 +303,7 @@ const apiResponse = computed(() =>
   background: linear-gradient(
     135deg,
     rgba(25, 15, 31, 0.05),
-    rgba(25, 15, 31, 0.45)
+    rgba(25, 15, 31, 0.25)
   );
   content: "";
 }
@@ -320,7 +323,7 @@ const apiResponse = computed(() =>
   width: clamp(3.2rem, 6vw, 4.5rem);
   height: clamp(3.2rem, 6vw, 4.5rem);
   place-items: center;
-  border: 4px solid #fff;
+  border: 4px solid var(--color-bg);
   border-radius: 50%;
   background: var(--color-principal);
   color: #fff;
@@ -338,10 +341,10 @@ const apiResponse = computed(() =>
   gap: 1rem;
   margin-top: 3rem;
   padding: 0.85rem;
-  border: 1px solid #eadfea;
+  border: 1px solid var(--color-border);
   border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 1rem 2.5rem rgba(55, 33, 66, 0.06);
+  background: var(--color-bg);
+  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.04);
 }
 
 .github-links {
@@ -359,11 +362,11 @@ const apiResponse = computed(() =>
   min-height: 4.2rem;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  border: 1px solid #eadfea;
+  border: 1px solid var(--color-border);
 }
 
 .link-github {
-  background: #fcf9fd;
+  background: var(--color-bg);
   flex: 1;
 }
 
@@ -385,9 +388,9 @@ const apiResponse = computed(() =>
 
 .link-github span,
 .development-info span {
-  color: #8d8291;
+  color: var(--color-text-light);
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -396,11 +399,12 @@ const apiResponse = computed(() =>
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: #241d27;
+  color: var(--color-text);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   word-break: break-word;
+  transition: color 0.3s ease;
 }
 
 .link-github a:hover {
@@ -413,8 +417,8 @@ const apiResponse = computed(() =>
 }
 
 .development-info {
-  background: #fff;
-  color: #68636c;
+  background: var(--color-bg);
+  color: var(--color-text-light);
 }
 
 .development-info > .lni {
@@ -423,9 +427,9 @@ const apiResponse = computed(() =>
 }
 
 .development-info strong {
-  color: #241d27;
+  color: var(--color-text);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* --- PROBLEMA E SOLUÇÃO --- */
@@ -435,8 +439,8 @@ const apiResponse = computed(() =>
   gap: 2rem;
   margin-top: 4rem;
   padding: 2rem 0;
-  border-top: 1px solid #eadfea;
-  border-bottom: 1px solid #eadfea;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .problem,
@@ -459,7 +463,8 @@ const apiResponse = computed(() =>
   flex-shrink: 0;
   place-items: center;
   border-radius: 50%;
-  background: #f4eafa;
+  border: 1px solid var(--color-border);
+  background: transparent;
   color: var(--color-principal);
   font-size: 1.1rem;
 }
@@ -475,28 +480,29 @@ const apiResponse = computed(() =>
 .solution-title span {
   color: var(--color-principal);
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 
 .problem-title h3,
 .solution-title h3 {
-  color: #241d27;
+  color: var(--color-text);
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .divider {
   width: 100%;
   height: 1px;
-  background: #eadfea;
+  background: var(--color-border);
 }
 
 .description {
   margin-top: 1rem;
-  color: #68636c;
+  color: var(--color-text-light);
   font-size: 0.9rem;
   line-height: 1.75;
+  font-weight: 300;
 }
 
 /* --- CONTEÚDO E RECURSOS --- */
@@ -514,7 +520,7 @@ const apiResponse = computed(() =>
 
 .technologies-panel {
   padding-top: 3rem;
-  border-top: 1px solid #eadfea;
+  border-top: 1px solid var(--color-border);
 }
 
 .section-heading {
@@ -524,7 +530,7 @@ const apiResponse = computed(() =>
 .section-kicker {
   color: var(--color-principal);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -532,9 +538,9 @@ const apiResponse = computed(() =>
 .section-heading h2,
 .gallery-heading h2 {
   margin-top: 0.6rem;
-  color: #241d27;
+  color: var(--color-text);
   font-size: clamp(1.35rem, 3vw, 2rem);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.25;
 }
 
@@ -542,7 +548,7 @@ const apiResponse = computed(() =>
   display: grid;
   grid-template-columns: 1fr;
   margin-top: 1.5rem;
-  border-top: 1px solid #eadfea;
+  border-top: 1px solid var(--color-border);
   list-style: none;
 }
 
@@ -551,25 +557,25 @@ const apiResponse = computed(() =>
   align-items: center;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid #eadfea;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .features-list li > span {
   color: var(--color-principal);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .features-list strong {
   flex: 1;
-  color: #4e4652;
+  color: var(--color-text);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.4;
 }
 
 .features-list .lni {
-  color: #b9a8bd;
+  color: var(--color-text-light);
   font-size: 0.8rem;
 }
 
@@ -582,12 +588,12 @@ const apiResponse = computed(() =>
 
 .technology-list span {
   padding: 0.55rem 0.85rem;
-  border: 1px solid #eadfea;
+  border: 1px solid var(--color-border);
   border-radius: 0.6rem;
-  background: #fcf9fd;
-  color: #5d4b63;
+  background: var(--color-bg);
+  color: var(--color-text-light);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* --- GALERIA --- */
@@ -595,7 +601,7 @@ const apiResponse = computed(() =>
 .api-response-section {
   margin-top: 4rem;
   padding-top: 3rem;
-  border-top: 1px solid #eadfea;
+  border-top: 1px solid var(--color-border);
 }
 
 .gallery-heading {
@@ -605,9 +611,9 @@ const apiResponse = computed(() =>
 }
 
 .gallery-count {
-  color: #8d8291;
+  color: var(--color-text-light);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .project-gallery {
@@ -622,8 +628,9 @@ const apiResponse = computed(() =>
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 0.8rem;
-  background: #1c1720;
+  border-radius: 12px;
+  background: var(--color-bg);
+  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.04);
 }
 
 .project-gallery figure:first-child:last-child {
@@ -648,11 +655,12 @@ const apiResponse = computed(() =>
   bottom: 0.8rem;
   padding: 0.35rem 0.6rem;
   border-radius: 999px;
-  background: rgba(28, 23, 32, 0.82);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--color-text);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  border: 1px solid var(--color-border);
 }
 
 /* Galeria específica para Apps Mobile */
@@ -671,10 +679,11 @@ const apiResponse = computed(() =>
 /* --- RESPOSTA DA API (JSON) --- */
 .api-response-wrapper {
   margin-top: 2rem;
-  border: 1px solid #33263a;
-  border-radius: 0.8rem;
-  background: #1c1720;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
   overflow: hidden;
+  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.04);
 }
 
 .api-response {
@@ -683,7 +692,7 @@ const apiResponse = computed(() =>
   padding: 1.2rem;
   overflow-x: auto;
   overflow-y: auto;
-  color: #f1d7ff;
+  color: var(--color-text);
   font-family: "Fira Code", "Courier New", monospace;
   font-size: 0.8rem;
   line-height: 1.6;
@@ -699,7 +708,8 @@ const apiResponse = computed(() =>
 
 .not-found h1 {
   margin-bottom: 1rem;
-  font-weight: 400;
+  font-weight: 300;
+  color: var(--color-text);
 }
 
 .not-found a {
