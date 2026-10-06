@@ -122,7 +122,6 @@ const formations = [
           <h2>{{ item.title }}</h2>
           <p class="card-text">{{ item.text }}</p>
         </div>
-        <span class="timeline-dot" aria-hidden="true"></span>
       </article>
     </section>
   </main>
