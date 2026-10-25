@@ -1,481 +1,462 @@
 <script setup>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
-
 const knowledgeAreas = [
   {
-    number: "01",
-    name: "Frontend",
-    description: "Interfaces responsivas que equilibram clareza, acessibilidade e personalidade visual.",
-    focus: "Criação de páginas, componentes reutilizáveis e experiências consistentes em diferentes telas.",
-    skills: ["HTML", "CSS", "JavaScript", "Vue.js", "React", "Figma", "Next.js", "SPA", "Componentização", "Responsividade"],
+    number: '01',
+    name: 'Frontend',
+    icon: 'lni-layout-9',
+    description: 'Interfaces responsivas que equilibram clareza, acessibilidade e personalidade visual.',
+    focus: 'Criação de páginas, componentes reutilizáveis e experiências consistentes em diferentes telas.',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Vue.js', 'React', 'Figma', 'Next.js', 'SPA', 'Componentização', 'Responsividade'],
   },
   {
-    number: "02",
-    name: "Backend",
-    description: "Serviços e integrações bem estruturados para transformar regras de negócio em produto.",
-    focus: "Desenvolvimento de APIs, autenticação, validações e funcionalidades que conectam sistemas.",
-    skills: ["Java", "Python", "Node.js", "Prisma", "APIs REST", "Spring Boot", "Express.js", "Autenticação", "Validações", "Integração de sistemas"],
+    number: '02',
+    name: 'Backend',
+    icon: 'lni-gears-3',
+    description: 'Serviços e integrações bem estruturados para transformar regras de negócio em produto.',
+    focus: 'Desenvolvimento de APIs, autenticação, validações e funcionalidades que conectam sistemas.',
+    skills: ['Java', 'Python', 'Node.js', 'Prisma', 'APIs REST', 'Spring Boot', 'Express.js', 'Autenticação', 'Validações', 'Integração de sistemas'],
   },
   {
-    number: "03",
-    name: "Banco de Dados",
-    description: "Dados organizados, acessíveis e consistentes para sustentar aplicações confiáveis.",
-    focus: "Modelagem de tabelas, consultas SQL, relacionamentos e organização das informações do sistema.",
-    skills: ["Supabase", "PostgreSQL", "SQLite", "Modelagem", "Relacionamentos", "Views", "Functions", "Triggers"],
+    number: '03',
+    name: 'Banco de Dados',
+    icon: 'lni-database-2',
+    description: 'Dados organizados, acessíveis e consistentes para sustentar aplicações confiáveis.',
+    focus: 'Modelagem de tabelas, consultas SQL, relacionamentos e organização das informações do sistema.',
+    skills: ['Supabase', 'PostgreSQL', 'SQLite', 'Modelagem', 'Relacionamentos', 'Views', 'Functions', 'Triggers'],
   },
   {
-    number: "04",
-    name: "Computação em Nuvem",
-    description: "Soluções preparadas para crescer com flexibilidade, segurança e eficiência operacional.",
-    focus: "Uso de serviços em nuvem, containers e ambientes escaláveis para hospedar aplicações.",
-    skills: ["Google Cloud", "BaaS", "Vercel", "Deploy", "Azure", "Docker", "Cloud Computing"],
+    number: '04',
+    name: 'Computação em Nuvem',
+    icon: 'lni-cloud-2',
+    description: 'Soluções preparadas para crescer com flexibilidade, segurança e eficiência operacional.',
+    focus: 'Uso de serviços em nuvem, containers e ambientes escaláveis para hospedar aplicações.',
+    skills: ['Google Cloud', 'BaaS', 'Vercel', 'Deploy', 'Azure', 'Docker', 'Cloud Computing'],
   },
   {
-    number: "05",
-    name: "DevOps",
-    description: "Automação e colaboração para entregar software com mais velocidade e consistência.",
-    focus: "Versionamento, integração contínua e automação das etapas entre desenvolvimento e entrega.",
-    skills: ["Git", "GitHub", "CI/CD", "GitHub Actions", "Pipelines", "Containers", "Docker"],
+    number: '05',
+    name: 'DevOps',
+    icon: 'lni-git',
+    description: 'Automação e colaboração para entregar software com mais velocidade e consistência.',
+    focus: 'Versionamento, integração contínua e automação das etapas entre desenvolvimento e entrega.',
+    skills: ['Git', 'GitHub', 'CI/CD', 'GitHub Actions', 'Pipelines', 'Containers', 'Docker'],
   },
   {
-    number: "06",
-    name: "Ciência de Dados",
-    description: "Exploração de dados para encontrar padrões, gerar clareza e apoiar escolhas melhores.",
-    focus: "Limpeza, análise e visualização de dados para transformar informações em descobertas úteis.",
-    skills: ["Python", "Tratamento de Dados", "Geração de Insights", "Análise de Dados"],
+    number: '06',
+    name: 'Ciência de Dados',
+    icon: 'lni-bar-chart-4',
+    description: 'Exploração de dados para encontrar padrões, gerar clareza e apoiar escolhas melhores.',
+    focus: 'Limpeza, análise e visualização de dados para transformar informações em descobertas úteis.',
+    skills: ['Python', 'Tratamento de Dados', 'Geração de Insights', 'Análise de Dados'],
   },
   {
-    number: "07",
-    name: "Engenharia de Software",
-    description: "Métodos e boas práticas para construir sistemas duráveis, testáveis e evolutivos.",
-    focus: "Planejamento, documentação, testes e escolhas de arquitetura ao longo do ciclo de vida do software.",
-    skills: ["Git", "UML", "Scrum", "Kanban", "Arquitetura", "Metodologias Ágeis", "Testes", "Documentação", "Requisitos"],
+    number: '07',
+    name: 'Engenharia de Software',
+    icon: 'lni-layers-1',
+    description: 'Métodos e boas práticas para construir sistemas duráveis, testáveis e evolutivos.',
+    focus: 'Planejamento, documentação, testes e escolhas de arquitetura ao longo do ciclo de vida do software.',
+    skills: ['Git', 'UML', 'Scrum', 'Kanban', 'Arquitetura', 'Metodologias Ágeis', 'Testes', 'Documentação', 'Requisitos'],
   },
-];
+]
+
+// Cards que ocupam duas colunas, para a grade fechar sem buracos
+const WIDE_CARDS = ['01', '07']
+
+const totalSkills = knowledgeAreas.reduce((sum, area) => sum + area.skills.length, 0)
+
+// Rola suavemente até a área escolhida (sem alterar a URL, para não disputar com o scrollBehavior do router)
+function jumpTo(number) {
+  const target = document.getElementById(`area-${number}`)
+  target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
 
 <template>
-  <Header />
-  <main class="knowledge-page">
-    <section class="knowledge-hero" aria-labelledby="knowledge-title">
-      <div class="hero-copy">
-        <p class="eyebrow">O QUE EU SEI FAZER</p>
-        <h1 id="knowledge-title">
-          Conhecimento que vira<br />
+  <main class="knowledge container">
+    <!-- CABEÇALHO -->
+    <section class="knowledge-head">
+      <div class="head-copy" v-reveal>
+        <p class="eyebrow">O que eu sei fazer</p>
+        <h1 class="display-title">
+          Conhecimento que vira <br />
           <em>solução.</em>
         </h1>
-        <p class="hero-description">
-          Uma visão das tecnologias, ferramentas e práticas que fazem parte da minha forma de criar produtos digitais.
+        <p class="lead">
+          Uma visão das tecnologias, ferramentas e práticas que fazem parte da
+          minha forma de criar produtos digitais.
         </p>
       </div>
-      <div class="hero-index" aria-label="Sete áreas de conhecimento">
-        <span class="index-number">07</span>
-        <span class="index-label">áreas de<br />conhecimento</span>
-        <span class="index-line" aria-hidden="true"></span>
-      </div>
+
+      <dl class="head-stats" v-reveal="150">
+        <div>
+          <dt>Áreas</dt>
+          <dd>{{ String(knowledgeAreas.length).padStart(2, '0') }}</dd>
+        </div>
+        <div>
+          <dt>Tecnologias</dt>
+          <dd>{{ totalSkills }}</dd>
+        </div>
+      </dl>
     </section>
 
-    <section class="knowledge-grid" aria-label="Áreas de conhecimento">
+    <!-- ÍNDICE RÁPIDO -->
+    <nav class="jump" aria-label="Ir para uma área de conhecimento" v-reveal>
+      <button
+        v-for="area in knowledgeAreas"
+        :key="area.number"
+        type="button"
+        class="jump-chip"
+        @click="jumpTo(area.number)"
+      >
+        <span class="jump-number">{{ area.number }}</span>
+        {{ area.name }}
+      </button>
+    </nav>
+
+    <!-- GRADE -->
+    <section class="grid" aria-label="Áreas de conhecimento">
       <article
         v-for="(area, index) in knowledgeAreas"
+        :id="`area-${area.number}`"
         :key="area.number"
-        class="knowledge-card"
-        :class="{ 'knowledge-card-featured': index === 0 }"
+        class="card"
+        :class="{ 'card-wide': WIDE_CARDS.includes(area.number) }"
+        v-reveal="(index % 3) * 100"
       >
-        <div class="card-topline">
+        <header class="card-top">
+          <span class="card-icon" aria-hidden="true"><i class="lni" :class="area.icon"></i></span>
           <span class="card-number">{{ area.number }}</span>
-          <span class="card-mark" aria-hidden="true">+</span>
-        </div>
-        <div class="card-content">
-          <h2>{{ area.name }}</h2>
-          <p>{{ area.description }}</p>
-        </div>
-        <div class="card-detail">
-          <span>NA PRÁTICA</span>
+        </header>
+
+        <h2>{{ area.name }}</h2>
+        <p class="card-desc">{{ area.description }}</p>
+
+        <div class="card-focus">
+          <span class="focus-label">Na prática</span>
           <p>{{ area.focus }}</p>
         </div>
-        <div class="skill-list" :aria-label="`Tecnologias de ${area.name}`">
-          <span v-for="skill in area.skills" :key="skill">{{ skill }}</span>
-        </div>
+
+        <footer class="card-foot">
+          <span class="skill-count">{{ area.skills.length }} tecnologias</span>
+          <ul class="skills" :aria-label="`Tecnologias de ${area.name}`">
+            <li v-for="skill in area.skills" :key="skill" class="tag">{{ skill }}</li>
+          </ul>
+        </footer>
       </article>
     </section>
 
-    <section class="knowledge-cta" aria-label="Próximo passo">
+    <!-- CHAMADA -->
+    <section class="cta-band" aria-labelledby="knowledge-cta-title" v-reveal>
       <div>
-        <p class="cta-kicker">PRÓXIMO PASSO</p>
-        <h2>Quer ver o conhecimento <em>em ação?</em></h2>
+        <p class="eyebrow">Próximo passo</p>
+        <h2 id="knowledge-cta-title" class="display-title cta-title">
+          Quer ver o conhecimento <em>em ação?</em>
+        </h2>
       </div>
-      <div class="cta-links">
-        <RouterLink to="/projects" class="cta-btn cta-btn-primary">
-          VER PROJETOS
+      <div class="cta-actions">
+        <RouterLink to="/projects" class="btn btn-cta">
+          Ver projetos
           <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
         </RouterLink>
-        <RouterLink to="/contact" class="cta-btn cta-btn-secondary">
-          ENTRAR EM CONTATO
-          <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
-        </RouterLink>
+        <RouterLink to="/contact" class="btn btn-ghost-light">Entrar em contato</RouterLink>
       </div>
     </section>
   </main>
-  <Footer />
 </template>
 
 <style scoped>
-/* --- ESTRUTURA PRINCIPAL --- */
-.knowledge-page {
-  width: min(90rem, 100%);
-  margin: 0 auto;
-  padding: clamp(2rem, 4vw, 4.5rem) 1.5rem 6rem;
-  box-sizing: border-box;
+.knowledge {
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
-/* --- HERO SECTION --- */
-.knowledge-hero {
+/* ===== CABEÇALHO ===== */
+.knowledge-head {
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 2.5rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid #ddd7e0;
+  margin-bottom: 2.5rem;
 }
 
-.hero-copy {
-  width: 100%;
+.head-copy {
+  max-width: 44rem;
 }
 
-.eyebrow {
-  margin-bottom: 0.85rem;
-  color: var(--color-principal);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+.head-copy .display-title {
+  margin-bottom: 1.4rem;
+  font-size: clamp(2.5rem, 5.2vw, 4.4rem);
 }
 
-.knowledge-hero h1 {
-  color: #17131a;
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
-  font-weight: 400;
-  line-height: 1.06;
+.head-stats {
+  display: flex;
+  gap: 2.5rem;
+  padding-bottom: 0.6rem;
 }
 
-.knowledge-hero h1 em {
-  display: inline-block;
-  color: var(--color-principal);
-  font-family: var(--font-cursive);
-  font-size: 0.88em; /* Proporcional ao título */
-  font-weight: 420;
-  font-style: italic;
-  transform: skewX(-12deg);
-}
-
-.hero-description {
-  max-width: 32rem;
-  margin-top: 1.5rem;
-  color: #68636c;
-  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
-  line-height: 1.7;
-}
-
-.hero-index {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: center;
-  gap: 0.5rem 0.85rem;
-  align-self: flex-start;
-}
-
-.index-number {
-  grid-row: span 2;
-  color: var(--color-principal);
-  font-family: var(--font-cursive);
-  font-size: clamp(3.5rem, 6vw, 4.5rem);
-  font-weight: 400;
-  line-height: 0.85;
-}
-
-.index-label {
-  color: #68636c;
+.head-stats dt {
+  margin-bottom: 0.2rem;
+  color: var(--color-text-light);
   font-size: 0.7rem;
-  line-height: 1.35;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.index-line {
-  display: block;
-  width: 4rem;
-  height: 1px;
-  background: #cfc1d6;
+.head-stats dd {
+  color: var(--color-principal);
+  font-family: var(--font-cursive);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-style: italic;
+  line-height: 0.9;
 }
 
-/* --- GRID DE CONHECIMENTOS --- */
-.knowledge-grid {
+/* ===== ÍNDICE RÁPIDO ===== */
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.jump-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease, transform 0.35s var(--ease-out);
+}
+
+.jump-chip:hover {
+  border-color: var(--color-principal);
+  background: var(--color-principal-soft);
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+.jump-number {
+  color: var(--color-principal);
+  font-family: var(--font-cursive);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* ===== GRADE ===== */
+.grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  padding-top: 3rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
-/* --- CARDS --- */
-.knowledge-card {
+.card {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  border: 1px solid #e5dfe8;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 0.8rem 2rem rgba(55, 33, 66, 0.04);
-  padding: 1.5rem;
-  box-sizing: border-box;
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  scroll-margin-top: 7rem;
+  padding: clamp(1.6rem, 3vw, 2.1rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.55s var(--ease-out),
+    box-shadow 0.55s var(--ease-out),
+    border-color 0.4s ease;
 }
 
-.knowledge-card:hover {
-  transform: translateY(-0.3rem);
-  box-shadow: 0 1.2rem 2.5rem rgba(55, 33, 66, 0.1);
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
 }
 
-.knowledge-card-featured {
-  border-color: var(--color-principal);
-  background: #2a1930;
-  color: #fff;
+.card-wide {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--color-principal-soft), var(--color-surface) 65%);
 }
 
-.card-topline {
+.card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eeeaf0;
+  margin-bottom: 1.6rem;
 }
 
-.knowledge-card-featured .card-topline {
-  border-color: rgba(255, 255, 255, 0.18);
+.card-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--color-principal-soft);
+  color: var(--color-principal);
+  font-size: 1.25rem;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s var(--ease-out);
+}
+
+.card:hover .card-icon {
+  background: var(--color-principal);
+  color: #fff;
+  transform: rotate(-8deg);
 }
 
 .card-number {
-  color: var(--color-principal);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-}
-
-.knowledge-card-featured .card-number {
-  color: #d9a9e8;
-}
-
-.card-mark {
-  color: #b2aab5;
+  color: var(--color-border-strong);
   font-family: var(--font-cursive);
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-style: italic;
   line-height: 1;
 }
 
-.knowledge-card-featured .card-mark {
-  color: #d9a9e8;
-}
-
-.card-content {
-  flex: 1;
-  padding: 1.5rem 0;
-}
-
-.card-content h2 {
-  margin-bottom: 0.6rem;
-  color: #19151c;
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
+.card h2 {
+  margin-bottom: 0.7rem;
+  font-size: 1.4rem;
   font-weight: 500;
 }
 
-.knowledge-card-featured .card-content h2 {
-  color: #fff;
-}
-
-.card-content p {
-  color: #716b74;
-  font-size: 0.82rem;
+.card-desc {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
   line-height: 1.65;
 }
 
-.knowledge-card-featured .card-content p {
-  color: #d6cbd9;
+.card-focus {
+  margin-top: 1.4rem;
+  padding: 1rem 1.2rem;
+  border-left: 2px solid var(--color-principal);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--color-bg-alt);
 }
 
-.card-detail {
-  margin-bottom: 1.25rem;
-  padding-left: 0.75rem;
-  border-left: 2px solid #d8c6df;
-}
-
-.card-detail span {
+.focus-label {
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
   color: var(--color-principal);
-  font-size: 0.65rem;
+  font-size: 0.66rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.card-detail p {
-  color: #827a85;
-  font-size: 0.75rem;
-  line-height: 1.5;
+.card-focus p {
+  color: var(--color-text);
+  font-size: 0.84rem;
+  line-height: 1.6;
 }
 
-.knowledge-card-featured .card-detail {
-  border-color: #a46bb5;
+.card-foot {
+  margin-top: auto;
+  padding-top: 1.4rem;
 }
 
-.knowledge-card-featured .card-detail span {
-  color: #d9a9e8;
+.skill-count {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: var(--color-text-light);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
 }
 
-.knowledge-card-featured .card-detail p {
-  color: #d6cbd9;
-}
-
-.skill-list {
+.skills {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin-top: auto; /* Empurra os tags para o fundo do card uniformemente */
+  list-style: none;
 }
 
-.skill-list span {
-  padding: 0.45rem 0.65rem;
-  border-radius: 999px;
-  background: #f2eaf6;
-  color: #76508a;
-  font-size: 0.72rem;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.knowledge-card-featured .skill-list span {
-  background: rgba(255, 255, 255, 0.12);
-  color: #f4e7f7;
-}
-
-/* ================= BREAKPOINTS RESPONSIVOS ================= */
-
-/* Tablets em pé e Laptops Médios (>= 640px) */
-@media (min-width: 640px) {
-  .knowledge-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Telas Grandes e Desktops (>= 1024px) */
-@media (min-width: 1024px) {
-  .knowledge-hero {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-  }
-
-  .hero-index {
-    align-self: flex-end;
-  }
-
-  .knowledge-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* --- CTA SECTION --- */
-.knowledge-cta {
+/* ===== CHAMADA ===== */
+.cta-band {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 2rem;
-  margin-top: 4rem;
-  padding: 3rem 3.5rem;
-  border-radius: 12px;
-  background: #0b0a0d;
-  color: #fff;
+  margin-top: clamp(4rem, 8vw, 6rem);
+  padding: clamp(2.2rem, 5vw, 3.8rem);
+  border-radius: var(--radius-lg);
+  background: var(--color-cta-bg);
+  color: var(--color-cta-text);
+  box-shadow: var(--shadow-lg);
 }
 
-.cta-kicker {
-  margin-bottom: 0.6rem;
-  color: #b38bd0;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
+.cta-band .eyebrow {
+  color: var(--color-cta-accent);
 }
 
-.knowledge-cta h2 {
-  color: #fff;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 400;
-  line-height: 1.15;
-  max-width: 36rem;
+.cta-title {
+  color: var(--color-cta-text);
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
 }
 
-.knowledge-cta h2 em {
-  color: #d9a9e8;
-  font-family: var(--font-cursive);
-  font-style: italic;
-  font-weight: 420;
+.cta-title em {
+  color: var(--color-cta-accent);
 }
 
-.cta-links {
+.cta-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  flex-shrink: 0;
+  gap: 0.8rem;
 }
 
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.85rem 1.4rem;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  transition: all 0.2s ease;
+.btn-cta {
+  background: var(--color-cta-text);
+  border-color: var(--color-cta-text);
+  color: var(--color-cta-bg);
 }
 
-.cta-btn-primary {
-  background: var(--color-principal);
-  color: #fff;
-  border: 1px solid var(--color-principal);
+.btn-cta:hover {
+  background: var(--color-cta-accent);
+  border-color: var(--color-cta-accent);
+  color: var(--color-cta-bg);
 }
 
-.cta-btn-primary:hover {
-  background: #9a63c8;
-  border-color: #9a63c8;
+.btn-ghost-light {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--color-cta-text);
 }
 
-.cta-btn-secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #a980bd;
+.btn-ghost-light:hover {
+  border-color: var(--color-cta-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-cta-text);
 }
 
-.cta-btn-secondary:hover {
-  background: var(--color-principal);
-  border-color: var(--color-principal);
-}
-
-@media (max-width: 600px) {
-  .knowledge-cta {
-    padding: 2rem 1.5rem;
-    flex-direction: column;
-    align-items: flex-start;
+/* ===== RESPONSIVO ===== */
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .cta-links {
-    width: 100%;
-    flex-direction: column;
+  .card-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 
-  .cta-btn {
+  .card-wide {
+    grid-column: auto;
+  }
+
+  .head-stats {
+    gap: 1.8rem;
+  }
+
+  .cta-actions {
     width: 100%;
-    justify-content: center;
-    box-sizing: border-box;
+  }
+
+  .cta-actions .btn {
+    flex: 1;
   }
 }
 </style>

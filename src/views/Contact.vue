@@ -1,307 +1,331 @@
 <script setup>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
+import { onBeforeUnmount, ref } from 'vue'
+import SvgIcon from '../components/SvgIcon.vue'
+import linkedin from '../assets/linkedin.svg?raw'
+import github from '../assets/github.svg?raw'
+
+const EMAIL = 'nathalia.ferreira7629@gmail.com'
+
+const copied = ref(false)
+let resetTimer = null
+
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText(EMAIL)
+    copied.value = true
+    window.clearTimeout(resetTimer)
+    resetTimer = window.setTimeout(() => (copied.value = false), 2200)
+  } catch {
+    // Sem permissão de área de transferência: abre o aplicativo de e-mail
+    window.location.href = `mailto:${EMAIL}`
+  }
+}
+
+onBeforeUnmount(() => window.clearTimeout(resetTimer))
 </script>
 
 <template>
-  <Header />
-  <main class="contact-page">
-    <section class="contact-intro">
-      <div class="eyebrow">
-        <span class="eyebrow-line"></span>
-        <span>CONTATO</span>
-      </div>
-      <h1>Vamos criar algo <em>que importa.</em></h1>
-      <p class="intro-text">
+  <main class="contact container">
+    <section class="contact-head" v-reveal>
+      <p class="eyebrow">Contato</p>
+      <h1 class="display-title">
+        Vamos criar algo <em>que importa.</em>
+      </h1>
+      <p class="lead">
         Tem uma ideia, um projeto ou só quer trocar uma ideia sobre tecnologia?
         Estou sempre aberta a boas conversas.
       </p>
-      <a
-        class="email-link"
-        href="mailto:nathalia.ferreira7629@gmail.com"
-      >
-        <span>nathalia.ferreira7629@gmail.com</span>
-        <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
-      </a>
     </section>
 
-    <section class="contact-links" aria-label="Outras formas de contato">
+    <section class="email-card" v-reveal="120" aria-label="E-mail">
+      <div class="email-info">
+        <span class="email-label">E-mail</span>
+        <a :href="`mailto:${EMAIL}`" class="email-address">{{ EMAIL }}</a>
+      </div>
+      <div class="email-actions">
+        <a :href="`mailto:${EMAIL}`" class="btn btn-primary">
+          Enviar e-mail
+          <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
+        </a>
+        <button type="button" class="btn btn-ghost copy-btn" :class="{ 'is-copied': copied }" @click="copyEmail">
+          <span class="copy-label">{{ copied ? 'Copiado!' : 'Copiar' }}</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="links" aria-label="Outras formas de contato">
       <a
-        class="contact-card contact-card-dark"
+        v-reveal="0"
         href="https://www.linkedin.com/in/nathalia-ferreira-7b0b1b1b9/"
         target="_blank"
         rel="noopener noreferrer"
+        class="link-card link-dark"
       >
-        <div class="card-icon"><img src="../assets/linkedin.svg" alt="" /></div>
-        <div>
-          <p class="card-label">CONEXÕES PROFISSIONAIS</p>
-          <h2>LinkedIn</h2>
-          <span class="card-action">Visitar perfil <i class="lni lni-arrow-up-right"></i></span>
-        </div>
+        <span class="link-icon"><SvgIcon :svg="linkedin" /></span>
+        <span class="link-body">
+          <span class="link-label">Conexões profissionais</span>
+          <strong>LinkedIn</strong>
+        </span>
+        <i class="lni lni-arrow-angular-top-right link-arrow" aria-hidden="true"></i>
       </a>
+
       <a
-        class="contact-card contact-card-light"
+        v-reveal="120"
         href="https://github.com/nathalia-ferreira"
         target="_blank"
         rel="noopener noreferrer"
+        class="link-card"
       >
-        <div class="card-icon"><img src="../assets/github.svg" alt="" /></div>
-        <div>
-          <p class="card-label">CÓDIGO E PROJETOS</p>
-          <h2>GitHub</h2>
-          <span class="card-action">Ver repositórios <i class="lni lni-arrow-up-right"></i></span>
-        </div>
+        <span class="link-icon"><SvgIcon :svg="github" /></span>
+        <span class="link-body">
+          <span class="link-label">Código e projetos</span>
+          <strong>GitHub</strong>
+        </span>
+        <i class="lni lni-arrow-angular-top-right link-arrow" aria-hidden="true"></i>
       </a>
     </section>
 
-    <div class="contact-footer">
-      <div class="footer-status">
-        <span class="contact-footer-dot"></span>
-        <p>Valinhos, São Paulo <span>/</span> disponível para conversar</p>
-      </div>
-      <RouterLink to="/projects" class="projects-link">
+    <div class="contact-foot" v-reveal>
+      <p class="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        Valinhos, São Paulo · disponível para conversar
+      </p>
+      <RouterLink to="/projects" class="link-arrow">
         Explorar projetos
         <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
       </RouterLink>
     </div>
   </main>
-  <Footer />
 </template>
 
 <style scoped>
-/* --- ESTRUTURA PRINCIPAL --- */
-.contact-page {
-  width: min(100% - 3rem, 76rem);
-  min-height: calc(100vh - 12rem); /* Ocupa a altura da tela dinamicamente */
-  margin: 0 auto;
-  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(2.5rem, 4vw, 3.5rem);
+.contact {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
+  gap: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: clamp(3rem, 8vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
-/* --- CABEÇALHO DA PÁGINA --- */
-.contact-intro {
-  max-width: 48rem;
+.contact-head {
+  max-width: 52rem;
 }
 
-.eyebrow {
+.contact-head .display-title {
+  margin-bottom: 1.4rem;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+}
+
+/* ===== E-MAIL ===== */
+.email-card {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  color: var(--color-principal);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  padding: clamp(1.8rem, 4vw, 2.6rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
 }
 
-.eyebrow-line {
-  width: 2.5rem;
-  height: 1px;
-  background: var(--color-principal);
-  flex-shrink: 0;
-}
-
-h1 {
-  max-width: 65rem;
-  margin: 1.2rem 0 1rem;
-  color: var(--color-text);
-  font-size: clamp(2.4rem, 6.5vw, 5.2rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-h1 em {
+.email-label {
   display: block;
+  margin-bottom: 0.4rem;
   color: var(--color-principal);
-  font-family: var(--font-cursive);
-  font-size: 0.9em;
-  font-weight: 400;
-  margin-top: 0.2rem;
-  margin-bottom: 1.5rem;
-  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.intro-text {
-  max-width: 30rem;
-  color: var(--color-text-light);
-  font-size: clamp(0.9rem, 1.2vw, 1rem);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-.email-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.8rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--color-border);
+.email-address {
   color: var(--color-text);
-  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  font-size: clamp(1.1rem, 2.6vw, 1.7rem);
   font-weight: 400;
   text-decoration: none;
-  max-width: 100%;
-  word-break: break-all;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(var(--color-principal), var(--color-principal));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.5s var(--ease-out), color 0.3s ease;
 }
 
-.email-link i {
+.email-address:hover {
+  color: var(--color-principal);
+  background-size: 100% 2px;
+}
+
+.email-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.copy-btn {
+  min-width: 8.5rem;
+}
+
+.copy-btn.is-copied {
+  border-color: #4fbf8b;
+  color: #3aa675;
+}
+
+.copy-label {
+  display: inline-block;
+  animation: fade-in 0.35s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* ===== LINKS ===== */
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.link-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 3vw, 2.1rem);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.55s var(--ease-out),
+    box-shadow 0.55s var(--ease-out),
+    border-color 0.4s ease,
+    background-color 0.4s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-principal);
+  box-shadow: var(--shadow-md);
+}
+
+.link-dark {
+  background: var(--color-cta-bg);
+  border-color: transparent;
+  color: #f1edf5;
+}
+
+.link-dark:hover {
+  border-color: var(--color-principal);
+}
+
+.link-icon {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
   flex-shrink: 0;
-  font-size: 0.95rem;
-}
-
-.email-link:hover,
-.projects-link:hover {
-  color: var(--color-principal);
-  border-color: var(--color-principal);
-}
-
-/* --- CARDS DE CONTATO --- */
-.contact-links {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  margin-top: 3.5rem;
-}
-
-.contact-card {
-  min-height: 10.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  padding: clamp(1.25rem, 3vw, 1.75rem);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  text-decoration: none;
-  box-sizing: border-box;
-  background: var(--color-bg);
-  box-shadow: 0 0.8rem 2rem rgba(154, 126, 176, 0.02);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.contact-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 1rem 3rem rgba(154, 126, 176, 0.08);
-  border-color: var(--color-principal);
-}
-
-.contact-card-dark {
-  background: #fbf9fc;
-  color: var(--color-text);
-}
-
-.contact-card-light {
-  background: #fff;
-  color: var(--color-text);
-}
-
-.card-icon {
-  display: grid;
-  width: 2.75rem;
-  height: 2.75rem;
-  flex: 0 0 2.75rem;
   place-items: center;
-  border-radius: 50%;
-  background: transparent;
-  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-principal-soft);
+  color: var(--color-principal);
+  transition: transform 0.5s var(--ease-out), background-color 0.3s ease, color 0.3s ease;
 }
 
-.card-icon img {
-  width: 1.25rem;
-  height: 1.25rem;
-  object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(35%) sepia(21%) saturate(2203%) hue-rotate(244deg) brightness(84%) contrast(85%);
+.link-icon :deep(.svg-icon) {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-.card-label {
-  margin-bottom: 0.75rem;
-  color: var(--color-text-light);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+.link-dark .link-icon {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-cta-accent);
 }
 
-.contact-card h2 {
-  margin-bottom: 1rem;
-  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
-  font-weight: 400;
-  color: var(--color-text);
+.link-card:hover .link-icon {
+  transform: rotate(-8deg) scale(1.05);
 }
 
-.card-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--color-text-light);
-  font-size: 0.8rem;
-  font-weight: 400;
-}
-
-.card-action i,
-.projects-link i {
-  font-size: 0.9rem;
-}
-
-/* --- RODAPÉ DE STATUS --- */
-.contact-footer {
+.link-body {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 1.25rem;
-  margin-top: 3.5rem;
+  gap: 0.15rem;
+}
+
+.link-label {
+  color: var(--color-text-light);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.link-dark .link-label {
+  color: var(--color-cta-accent);
+  opacity: 0.8;
+}
+
+.link-body strong {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.link-arrow {
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.link-card:hover .link-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* ===== RODAPÉ DA PÁGINA ===== */
+.contact-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--color-border);
-  color: var(--color-text-light);
-  font-size: 0.78rem;
-  font-weight: 300;
 }
 
-.footer-status {
-  display: flex;
+.status {
+  display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.6rem;
+  color: var(--color-text-light);
+  font-size: 0.86rem;
 }
 
-.contact-footer-dot {
+.status-dot {
+  position: relative;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: #62ad74;
-  flex-shrink: 0;
+  background: #4fbf8b;
 }
 
-.contact-footer p span {
-  margin: 0 0.35rem;
-  color: var(--color-border);
-}
-
-.projects-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text);
-  font-weight: 400;
-  text-decoration: none;
-  width: max-content;
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-/* ================= BREAKPOINTS DE RESPONSIVIDADE ================= */
-
-/* Tablets e Desktops (>= 640px) */
-@media (min-width: 640px) {
-  .contact-links {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 720px) {
+  .links {
+    grid-template-columns: 1fr;
   }
 
-  .contact-footer {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  .email-actions {
+    width: 100%;
+  }
+
+  .email-actions .btn {
+    flex: 1;
   }
 }
 </style>

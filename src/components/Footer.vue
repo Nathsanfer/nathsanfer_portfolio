@@ -1,220 +1,196 @@
+<script setup>
+import SvgIcon from './SvgIcon.vue'
+import github from '../assets/github.svg?raw'
+import linkedin from '../assets/linkedin.svg?raw'
+
+const year = new Date().getFullYear()
+</script>
+
 <template>
-  <footer>
-    <div class="logo">
-      <img src="../assets/star.png" alt="Estrela Dourada" />
-      <div class="logo-text">
-        <h4>NATHALIA</h4>
-        <p>DESENVOLVEDORA</p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/star.png" alt="" class="footer-mark" />
+        <div>
+          <p class="footer-name">Nathalia Ferreira</p>
+          <p class="footer-role">Desenvolvedora de sistemas · Valinhos, SP</p>
+        </div>
       </div>
-    </div>
 
-    <div class="content">
-      <div class="item">
-        <h4>EMAIL</h4>
-        <a href="mailto:nathalia.ferreira7629@gmail.com">nathalia.ferreira7629@gmail.com</a>
-      </div>
-      <div class="item">
-        <h4>TELEFONE</h4>
-        <a href="tel:+5519920013661">(19) 92001-3661</a>
-      </div>
-      <div class="item">
-        <h4>LOCALIZAÇÃO</h4>
-        <p>Valinhos - São Paulo</p>
-      </div>
-    </div>
+      <dl class="footer-contact">
+        <div>
+          <dt>E-mail</dt>
+          <dd><a href="mailto:nathalia.ferreira7629@gmail.com">nathalia.ferreira7629@gmail.com</a></dd>
+        </div>
+        <div>
+          <dt>Telefone</dt>
+          <dd><a href="tel:+5519920013661">(19) 92001-3661</a></dd>
+        </div>
+      </dl>
 
-    <div class="social">
-      <span class="social-label">ME ACOMPANHE</span>
-      <div class="social-links">
+      <div class="footer-social">
         <a
           href="https://www.github.com/nathalia-ferreira"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
+          class="social-btn"
         >
-          <img src="../assets/github.svg" alt="GitHub" />
+          <SvgIcon :svg="github" />
         </a>
         <a
           href="https://www.linkedin.com/in/nathalia-ferreira-7b0b1b1b9/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
+          class="social-btn"
         >
-          <img src="../assets/linkedin.svg" alt="LinkedIn" />
+          <SvgIcon :svg="linkedin" />
         </a>
       </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© {{ year }} Nathalia Ferreira</span>
+      <a href="#top" class="to-top">Voltar ao topo <i class="lni lni-arrow-upward" aria-hidden="true"></i></a>
     </div>
   </footer>
 </template>
 
 <style scoped>
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2.5rem;
+.footer {
+  margin-top: clamp(4rem, 9vw, 7rem);
   border-top: 1px solid var(--color-border);
-  background-color: var(--color-bg);
-  box-sizing: border-box;
-  width: 100%;
+  background: var(--color-bg-alt);
+  transition: background-color 0.4s ease;
 }
 
-/* --- LOGO --- */
-.logo {
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1.6fr auto;
+  align-items: center;
+  gap: 2.5rem;
+  padding-block: 3rem 2.5rem;
+}
+
+.footer-brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.9rem;
 }
 
-.logo img {
-  width: 45px;
-  height: 45px;
+.footer-mark {
+  width: 2.6rem;
+  height: 2.6rem;
   object-fit: contain;
 }
 
-.logo-text h4 {
-  font-size: 1.05rem;
-  font-weight: 500;
+.footer-name {
   color: var(--color-text);
-  margin: 0;
-  letter-spacing: 0.05em;
-}
-
-.logo-text p {
-  font-size: 0.75rem;
-  margin: 0;
-  color: var(--color-text-light);
-  letter-spacing: 0.05em;
-}
-
-/* --- CONTEÚDO (INFORMAÇÕES DE CONTATO) --- */
-.content {
-  display: flex;
-  align-items: center;
-  gap: clamp(2rem, 4vw, 5rem);
-}
-
-.item h4 {
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: var(--color-text);
-  margin: 0 0 0.2rem 0;
-  letter-spacing: 0.05em;
 }
 
-.item p,
-.item a {
-  font-size: 0.82rem;
+.footer-role {
   color: var(--color-text-light);
-  margin: 0;
+  font-size: 0.8rem;
+}
+
+.footer-contact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 1.5rem clamp(2rem, 4vw, 3.5rem);
+}
+
+.footer-contact dt {
+  margin-bottom: 0.25rem;
+  color: var(--color-principal);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footer-contact dd a {
+  color: var(--color-text-light);
+  font-size: 0.86rem;
   text-decoration: none;
+  overflow-wrap: anywhere;
   transition: color 0.3s ease;
-  display: inline-block;
 }
 
-.item a:hover {
+.footer-contact dd a:hover {
   color: var(--color-principal);
 }
 
-/* --- REDES SOCIAIS --- */
-.social {
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social-btn {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  place-items: center;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: transform 0.35s var(--ease-out), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.social-btn :deep(.svg-icon) {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-principal);
+  background: var(--color-principal);
+  color: #fff;
+}
+
+.footer-bottom {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-light);
+  font-size: 0.78rem;
 }
 
-.social-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text);
-  letter-spacing: 0.05em;
+.to-top {
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.social-links {
-  display: flex;
-  gap: 0.5rem;
+.to-top:hover {
+  color: var(--color-principal);
 }
 
-.social-links a {
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  place-items: center;
-  background-color: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.social-links a:hover {
-  transform: translateY(-2px);
-  background-color: var(--color-principal);
-  border-color: var(--color-principal);
-  box-shadow: 0 4px 15px rgba(154, 126, 176, 0.2);
-}
-
-.social-links img {
-  width: 1.1rem;
-  height: 1.1rem;
-  object-fit: contain;
-  transition: all 0.3s ease;
-  filter: brightness(0) saturate(100%) invert(35%) sepia(21%) saturate(2203%) hue-rotate(244deg) brightness(84%) contrast(85%);
-}
-
-.social-links a:hover img {
-  filter: brightness(0) invert(1);
-}
-
-/* ================= BREAKPOINTS RESPONSIVOS ================= */
-
-/* Tablets (Abaixo de 1024px) */
-@media (max-width: 1024px) {
-  footer {
-    flex-wrap: wrap;
-    padding: 2rem 2rem 1.5rem;
-    gap: 1.5rem;
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
   }
 
-  .logo {
-    order: 1;
-  }
-
-  .social {
-    order: 2;
-    margin-left: auto;
-  }
-
-  .content {
-    order: 3;
-    width: 100%;
-    justify-content: space-between;
-    border-top: 1px solid var(--color-border);
-    padding-top: 1.25rem;
-    gap: 1.5rem;
+  .footer-social {
+    order: -1;
   }
 }
 
-/* Celulares (Abaixo de 640px) */
-@media (max-width: 640px) {
-  footer {
-    padding: 1.5rem 1.25rem;
-    gap: 1.25rem;
+@media (max-width: 560px) {
+  .footer-contact {
+    grid-template-columns: 1fr;
   }
 
-  .social-label {
-    display: none; /* Oculta o texto em celulares para manter o visual limpo */
-  }
-
-  .content {
-    display: flex;
+  .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .item p,
-  .item a {
-    word-break: break-word; /* Evita estouro de tela caso o e-mail seja longo */
   }
 }
 </style>

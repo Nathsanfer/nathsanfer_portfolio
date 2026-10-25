@@ -10,7 +10,20 @@
     <meta name="description" content="Portfolio de Nathalia Ferreira — desenvolvedora de sistemas especializada em desenvolvimento web, APIs, cloud e ciência de dados." />
     <meta name="keywords" content="desenvolvedora, portfolio, Vue.js, React, Node.js, sistemas web, API, cloud, Python" />
     <meta name="author" content="Nathalia Ferreira" />
-    <meta name="theme-color" content="#784aac" />
+    <meta name="theme-color" content="#9a6b45" />
+
+    <!-- Aplica o tema salvo antes da primeira pintura (evita flash de cor) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- Open Graph (compartilhamento em redes sociais) -->
     <meta property="og:type" content="website" />
