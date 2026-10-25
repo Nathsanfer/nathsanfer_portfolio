@@ -1153,6 +1153,7 @@ onBeforeUnmount(() => observer?.disconnect())
   }
 
   .focus-card {
+    top: 32%;
     width: 11.5rem;
     padding: 0.9rem 1rem;
   }
@@ -1176,7 +1177,7 @@ onBeforeUnmount(() => observer?.disconnect())
     width: 5.2rem;
     height: 5.2rem;
     left: 0;
-    top: 40%;
+    top: 69%;
   }
 
   .badge-star {
