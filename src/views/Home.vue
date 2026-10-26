@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { projects } from '../data/projects.js'
+import { highlights } from '../data/highlights.js'
 import ProjectCard from '../components/ProjectCard.vue'
 import hero from '../assets/hero.png'
 import cloud from '../assets/cloud.png'
@@ -189,6 +190,53 @@ onBeforeUnmount(() => observer?.disconnect())
         <span class="service-icon"><i class="lni" :class="service.icon" aria-hidden="true"></i></span>
         <h3>{{ service.title }}</h3>
         <p>{{ service.text }}</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section v-if="highlights.length" class="section container" aria-labelledby="highlights-title">
+    <div class="section-head" v-reveal>
+      <div>
+        <p class="eyebrow">Destaques</p>
+        <h2 id="highlights-title" class="display-title section-title">
+          Conquistas que <em>merecem atenção.</em>
+        </h2>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <article
+        v-for="(item, index) in highlights"
+        :key="item.title"
+        class="highlight-card"
+        v-reveal="index * 120"
+      >
+        <figure class="highlight-media">
+          <img v-if="item.image" :src="item.image" :alt="item.title" loading="lazy" />
+          <div v-else class="highlight-placeholder" aria-hidden="true">
+            <i class="lni lni-certificate-badge-1"></i>
+          </div>
+        </figure>
+
+        <div class="highlight-body">
+          <p class="highlight-kind">{{ item.kind }}</p>
+          <h3>{{ item.title }}</h3>
+          <p v-if="item.issuer || item.date" class="highlight-meta">
+            {{ item.issuer }}<span v-if="item.issuer && item.date"> · </span>{{ item.date }}
+          </p>
+          <p class="highlight-desc">{{ item.description }}</p>
+          <a
+            v-if="item.link"
+            :href="item.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link-arrow"
+          >
+            Ver certificado
+            <i class="lni lni-arrow-angular-top-right" aria-hidden="true"></i>
+          </a>
+        </div>
       </article>
     </div>
   </section>
@@ -834,6 +882,115 @@ onBeforeUnmount(() => observer?.disconnect())
   background: var(--color-cta-accent);
   border-color: var(--color-cta-accent);
   box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* ================= DESTAQUES ================= */
+.highlights {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition:
+    transform 0.55s var(--ease-out),
+    box-shadow 0.55s var(--ease-out),
+    border-color 0.4s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.highlight-media {
+  display: grid;
+  min-height: 20rem;
+  margin: 0;
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+.highlight-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1.5rem;
+  transition: transform 0.9s var(--ease-out);
+}
+
+.highlight-card:hover .highlight-media img {
+  transform: scale(1.03);
+}
+
+.highlight-placeholder {
+  display: grid;
+  width: 6rem;
+  height: 6rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-principal-soft);
+  color: var(--color-principal);
+  font-size: 2.6rem;
+}
+
+.highlight-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: clamp(1.8rem, 4vw, 3rem);
+}
+
+.highlight-kind {
+  color: var(--color-principal);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.highlight-body h3 {
+  font-family: var(--font-cursive);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.highlight-meta {
+  color: var(--color-text);
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.highlight-desc {
+  color: var(--color-text-light);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.highlight-body .link-arrow {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 800px) {
+  .highlight-card {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-media {
+    min-height: 14rem;
+  }
 }
 
 /* ================= NÚMEROS ================= */
